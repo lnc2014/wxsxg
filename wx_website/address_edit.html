@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta http-equiv="Expires" content="0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi">
+	<title>新增地址</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css?v=1.0" />
+</head>
+<body>
+    <div class="container">
+        <div class="contact_form border_bottom">
+            <div class="div_contact border_bottom">
+                <div class="contact_title color_a8 float_left">联系人</div>
+                <div class="contact_info float_left">
+                    <div class="contact_name border_bottom"><input type="text" name="contact_name" placeholder="您的姓名" value="张三"></div>
+                    <div class="contact_gender">
+                        <label class="gender1"><input type="radio" name="gender" value='1' checked>先生</label>
+                        <label><input type="radio" name="gender" value='0'>女士</label>
+                    </div>
+                </div>
+            </div>
+            <div class="div_visit_addr border_bottom">
+                <div class="visit_addr_title color_a8 float_left">上门地址</div>
+                <div class="visit_addr_info float_left">
+                    <div class="addr_city"><select class="prov"></select><select class="city"></select><select class="dist"></select></div>
+                    <div class="addr_street">
+                        <img src="images/annotation.png" onclick="location='address_map.html'"><input type="text" name="input_street" placeholder="街道，小区" value="深圳市南山区1201号">
+                    </div>
+                </div>
+            </div>
+            <div class="div_house border_bottom">
+                <span class="q_til">&nbsp;</span>
+                <input type="text" class="input_qh" placeholder="楼号/门牌号，楼层" name="input_floor">
+            </div>
+            <div class="div_tel border_bottom">
+                <span class="q_til color_a8">联系电话</span>
+                <input type="text" class="input_qh" placeholder="请输入联系人电话" name="input_tel" value="13287654131">
+            </div>
+            <div class="div_default_addr">
+                <label class="color_base"><input type="radio" name="input_default_addr" value="1">设为默认地址</label>
+            </div>
+        </div>
+        <div class="btn_oprs align_center">
+            <button class="btn btn_s" type="button" onclick="location='address.html'">删&nbsp;&nbsp;除</button>
+            <button class="btn btn_s" type="button" onclick="location='address.html'">确&nbsp;&nbsp;认</button>
+        </div>
+    </div>
+   	<script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/citySelect.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(".addr_city").citySelect({url:'js/city.json', prov:'广东', city:'深圳', dist:'南山区', required:false, nodata:'none' });
+        });
+    </script>
+</body>
+</html>

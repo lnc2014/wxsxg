@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta http-equiv="Expires" content="0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi">
+	<title>地址编辑</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css?v=1.0" />
+</head>
+<body>
+    <div class="container">
+        <div class="align_center div_search empty">
+            <input type="text" class="input_search" placeholder="搜索地名"><span class="btn_cancel">取消</span>
+        </div>
+        <div class="div_sel_addrs">
+            <div class="addr_r middle_box border_bottom">
+                <span class="color_base">深圳市南山区1200号蝴蝶湾</span>
+            </div> 
+            <div class="addr_r middle_box border_bottom">
+                <span class="color_base">双湖湾</span><br>
+                <span class="color_a8">深圳市南山区1201号</span>
+            </div>
+            <div class="addr_r middle_box border_bottom">
+                <span class="color_base">双湖湾</span><br>
+                <span class="color_a8">深圳市南山区1201号</span>
+            </div>
+            <div class="addr_r middle_box border_bottom">
+                <span class="color_base">双湖湾</span><br>
+                <span class="color_a8">深圳市南山区1201号</span>
+            </div>
+        </div>
+    </div>
+   	<script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var search = $(".div_search");
+            search.find(".input_search").on('input',function(){
+                var val = $(this).val(), 
+                isEmpty = search.hasClass("empty");
+                if(!val && !isEmpty) {
+                    search.addClass("empty");
+                    $(".addr_r").show().find("label").each(function(){
+                            var txt = $(this).text();
+                            $(this).before(txt);$(this).remove();
+                        });
+                } else if(val && isEmpty){
+                    search.removeClass("empty");
+                } 
+                if(val) {
+                    $(".addr_r").each(function(){
+                        $(this).find("label").each(function(){
+                            var txt = $(this).text();
+                            $(this).before(txt);$(this).remove();
+                        });
+                        $(this).find("span").each(function(){
+                            var htl = $(this).html();
+                            if(htl.indexOf(val) > -1){
+                                $(this).parent().show();
+                                $(this).html(htl.replace(new RegExp(val, "ig"),'<label style="color:#fc9625">'+val+'</label>'));
+                                return false;
+                            } else {
+                                $(this).parent().hide();
+                            }
+                        });
+                    }) 
+                }
+            });
+            $(".btn_cancel").on("click",function(){
+                search.addClass("empty");
+                search.find(".input_search").val("");
+                $(".addr_r").show().find("label").each(function(){
+                            var txt = $(this).text();
+                            $(this).before(txt);$(this).remove();
+                        });
+            });
+        });
+    </script>
+</body>
+</html>

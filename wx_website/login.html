@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta http-equiv="Expires" content="0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi">
+	<title>快速登录</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css?v=1.0" />
+</head>
+<body>
+    <div class="container">
+        <div class="ct"></div>
+        <div class="form_row border_bottom">
+            <span class="font_base color_gray">手机号</span>
+            <input type="tel" name="mobile" id="mobile" maxLength="11" class="input_phone color_base">
+        </div>
+        <div class="form_row">
+            <span class="font_base color_gray">验证码</span>
+            <input type="tel" name="verify" id="verify" maxLength="4" class="input_verify color_base">
+            <button class="btn btn_verify" type="button" onclick="countdown(this)" disabled>发送验证码</button>
+        </div>
+        <div class="form_submit align_center">
+            <a href="id.html"><button class="btn btn_l" type="button">下一步</button></a>
+        </div>
+    </div> 
+   	<script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript">
+        $("#mobile").on("input",function(){
+            if($(this).val().length == 11) {
+                $(".btn_verify").removeAttr("disabled");
+            } else {
+                $(".btn_verify").attr("disabled","");
+            }
+        });
+        function countdown(sender){
+            $(".btn_verify").attr("disabled","").text("验证码(60s)");
+            var time = 60, cd = function(){
+                time--;
+                if(time == 0) {
+                    sender.innerHTML = "重新获取";
+                    if($("#mobile").val().length == 11) {
+                        $(".btn_verify").removeAttr("disabled");
+                    } else {
+                        $(".btn_verify").attr("disabled","");
+                    }
+                } else {
+                    sender.innerHTML = "验证码(" + time + "s)"
+                    setTimeout(cd, 1000);
+                }
+            };
+            setTimeout(cd, 1000);
+        }
+    </script>
+</body>
+</html>

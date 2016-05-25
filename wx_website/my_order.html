@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta http-equiv="Expires" content="0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi">
+	<title>我的订单</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css?v=1.0" />
+</head>
+<body>
+    <div class="container">
+        <div class="com_status_options">
+            <div class="option selected" data-status="0">全部</div>
+            <div class="option" data-status="1">待接单</div>
+            <div class="option" data-status="2">待上门</div>
+            <div class="option" data-status="3">检测中</div>
+            <div class="option" data-status="4">维修中</div>
+            <div class="option" data-status="5">调配件</div>
+            <div class="option" data-status="6">待点评</div>
+            <div class="option" data-status="7">已结束</div>
+            <div class="option" data-status="8">已取消</div>
+        </div>
+		<div class="com_cur_status">
+            <span class="color_base">全部</span><i></i>
+        </div>
+        <div class="com_order_list">
+            <div class="com_order" data-status="1">
+                <div class="color_orange com_s_title">待接单</div>
+                <div class="color_base com_s_date">下单时间：2016-02-16 13:25:25 </div>
+                <div class="com_button"><button type="button" class="btn btn_half">取消订单</button><a href="complaint.html"><button type="button" class="btn btn_half bg_orange">投 诉</button></a></div>
+            </div>
+            <div class="com_order" data-status="2">
+                <div class="color_orange com_s_title">待上门</div>
+                <div class="color_base com_s_date">下单时间：2016-02-16 13:25:25 </div>
+                <div class="com_button"><button type="button" class="btn btn_half">取消订单</button><a href="complaint.html"><button type="button" class="btn btn_half bg_orange">投 诉</button></a></div>
+            </div>
+            <div class="com_order" data-status="4">
+                <div class="color_orange com_s_title">维修中</div>
+                <div class="color_base com_s_date">下单时间：2016-02-16 13:25:25 </div>
+                <div class="com_button"><a href="order_pay.html"><button type="button" class="btn btn_half">维修结束并支付</button></a><a href="complaint.html"><button type="button" class="btn btn_half bg_orange">投 诉</button></a></div>
+            </div>
+            <div class="com_order" data-status="6">
+                <div class="color_orange com_s_title">待点评</div>
+                <div class="color_base com_s_date">下单时间：2016-02-16 13:25:25 </div>
+                <div class="com_button"><a href="rating.html"><button type="button" class="btn btn_half">我要点评</button></a><a href="complaint.html"><button type="button" class="btn btn_half bg_orange">投 诉</button></a></div>
+            </div>
+            <div class="com_order" data-status="8">
+                <div class="color_orange com_s_title">已取消</div>
+                <div class="color_base com_s_date">下单时间：2016-02-16 13:25:25 </div>
+                <div class="com_button"><a href="complaint.html"><button type="button" class="btn btn_full">投 诉</button></a></div>
+            </div>
+            <div class="com_order" data-status="2">
+                <div class="color_orange com_s_title">待上门</div>
+                <div class="color_base com_s_date">下单时间：2016-02-16 13:25:25 </div>
+                <div class="com_button"><button type="button" class="btn btn_half">取消订单</button><a href="complaint.html"><button type="button" class="btn btn_half bg_orange">投 诉</button></a></div>
+            </div>
+            <div class="com_order" data-status="3">
+                <div class="color_orange com_s_title">检测中</div>
+                <div class="color_base com_s_date">下单时间：2016-02-16 13:25:25 </div>
+                <div class="com_button"><a href="rating.html"><button type="button" class="btn btn_half">我要点评</button></a><a href="complaint.html"><button type="button" class="btn btn_half bg_orange">投 诉</button></a></div>
+            </div>
+            <div class="com_order" data-status="5">
+                <div class="color_orange com_s_title">调配件</div>
+                <div class="color_base com_s_date">下单时间：2016-02-16 13:25:25 </div>
+                <div class="com_button"><a href="rating.html"><button type="button" class="btn btn_half">我要点评</button></a><a href="complaint.html"><button type="button" class="btn btn_half bg_orange">投 诉</button></a></div>
+            </div>
+        </div>
+    </div> 
+   	<script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript">
+        $(".com_cur_status").on("click",function(){
+            var so = $(".com_status_options");
+            if(!so.hasClass("show")) {
+                so.addClass("show");
+            } else {
+                so.removeClass("show");
+            }
+        });
+        $(".com_status_options").on("click",function(e){
+            var cur_option = $(e.target);
+            $(".com_status_options").removeClass("show");
+            if(!cur_option.hasClass("selected")) {
+                $(this).find(".option").removeClass("selected");
+                cur_option.addClass("selected");
+                var s = cur_option.attr("data-status");
+                if(s == 0) {
+                    $(".com_order").show();
+                } else {
+                    $(".com_order").not("[data-status='"+s+"']").hide();
+                    $(".com_order[data-status='"+s+"']").show();
+                }
+                $(".com_cur_status span").text(cur_option.text());
+            }
+        }); 
+    </script>
+</body>
+</html>

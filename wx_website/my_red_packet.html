@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi">
+	<title>我的红包</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css?v=1.0" />
+</head>
+<body>
+    <div class="container">
+        <div class="div_use_nav">
+            <ul>
+                <li class="li selected" data-status="0">全部使用</li>
+                <li class="li" data-status="1">未使用</li>
+                <li class="li" data-status="2">已使用</li>
+                <li class="li" data-status="3">已过期</li>
+            </ul>
+        </div>
+        <div class="red_packets_list">
+            <div class="ticket ticket_valid" data-status="1">
+                <div class="denomination">
+                    <span class="value">5元</span>
+                    <span class="ticket_status">未使用</span>
+                </div>
+                <div class="validity_date">有效期：2015年09月09日－2016年09月09日</div>
+            </div>
+            <div class="ticket ticket_valid" data-status="1">
+                <div class="denomination">
+                    <span class="value">23元</span>
+                    <span class="ticket_status">未使用</span>
+                </div>
+                <div class="validity_date">有效期：2015年09月09日－2016年09月09日</div>
+            </div>
+            <div class="ticket ticket_invalid" data-status="2">
+                <div class="denomination">
+                    <span class="value">20元</span>
+                    <span class="ticket_status">已使用</span>
+                </div>
+                <div class="validity_date">有效期：2015年09月09日－2016年09月09日</div>
+            </div>
+            <div class="ticket ticket_invalid" data-status="3">
+                <div class="denomination">
+                    <span class="value">20元</span>
+                    <span class="ticket_status">已过期</span>
+                </div>
+                <div class="validity_date">有效期：2015年09月09日－2016年09月09日</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript">
+        $(".li").on("click",function(){
+            if(!$(this).hasClass("selected")) {
+                $(".li").removeClass("selected");
+                $(this).addClass("selected");
+                if($(this).attr("data-status") == 0) {
+                    $(".ticket").show();
+                } else {
+                    $(".ticket").not("[data-status='"+$(this).attr("data-status")+"']").hide();
+                    $(".ticket[data-status='"+$(this).attr("data-status")+"']").show();
+                }
+            }
+        }); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi">
+	<title>发票</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css?v=1.0" />
+</head>
+<body>
+    <div class="container">
+        <div class="inv_header">
+            <div class="h_l color_a8">可开票订单列表</div>
+            <a href="invoice_history.html"><div class="h_r color_orange">开票历史</div></a>
+        </div>
+        <div class="invoice_list">
+            <div class="inv_row">
+                <div class="inv_status border_bottom">
+                    <div class="color_base inv_st">已结束</div>
+                    <div class="inv_sc"><input type="checkbox" checked></div>
+                    <div class="color_base inv_date">下单时间：2016-02-16</div>
+                </div>
+                <div class="inv_pay">实际支付金额：<span class="color_orange">¥12</span></div>
+            </div>
+            <div class="inv_row">
+                <div class="inv_status border_bottom">
+                    <div class="color_base inv_st">已结束</div>
+                    <div class="inv_sc"><input type="checkbox"></div>
+                    <div class="color_base inv_date">下单时间：2016-02-16</div>
+                </div>
+                <div class="inv_pay">实际支付金额：<span class="color_orange">¥12</span></div>
+            </div>
+        </div>
+        <div class="inv_next">
+            <div class="total float_left">
+                <div>开票金额：<span class="color_orange">¥234</span></div>
+                <div>开票金额满200元方可开票</div>
+            </div>
+            <a href="invoice_fill.html"><button type="button" class="btn full_height btn_next">下一步</button></a>
+        </div>
+    </div>
+</body>
+</html>
