@@ -6,9 +6,28 @@
  * Time: 22:51
  */
 
-class BaseController extends CI_Controller{
+class BaseController extends CI_Controller
+{
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
+        $this->load->helper('url');
+    }
+
+    /**
+     * 接口api统一结果处理
+     * @param $result
+     * @param $data
+     * @param $info
+     * @return string
+     */
+    public function apiReturn($result, $data, $info)
+    {
+        $arr["result"] = $result;
+        $arr["data"] = $data === null ? '' : $data;
+        $arr["info"] = $info;
+        $res = json_encode($arr);
+        return $res;
     }
 }
