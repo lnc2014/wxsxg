@@ -87,9 +87,41 @@ class Sxg extends BaseController{
     }
     public function address_map(){
         $title = "新增地址";
-
         $this->load->view('address-map',array(
             'title' => $title
         ));
+    }
+
+    /**
+     * 我的账户
+     */
+    public function my_account(){
+        $title = "我的账户";
+        $this->load->view('my-account',array(
+            'title' => $title
+        ));
+    }
+
+    /**
+     * 意见反馈
+     */
+    public function feedback(){
+        $title = "投诉与建议";
+        $this->load->view('feed-back',array(
+            'title' => $title
+        ));
+    }
+
+    /**
+     *反馈与意见
+     */
+    public function add_feedback(){
+        $feedback = $this->input->post('feedback');
+        if (empty($feedback)) {
+            echo $this->apiReturn('0003', new stdClass(), '请求参数不能为空');
+            return;
+        }
+        //TODO 意见反馈
+
     }
 }
