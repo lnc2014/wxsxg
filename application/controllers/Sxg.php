@@ -31,6 +31,11 @@ class Sxg extends BaseController{
             return;
         }
         session_start();
+
+        if(!$this->check_user($phone)){
+            echo $this->apiReturn('0002', new stdClass(), '用户不存在');
+            return;
+        }
         $phone_code = $phone.date('Ymd');
         $sms_code = empty($_SESSION[$phone_code])?0:$_SESSION[$phone_code];
         if($sms_code !== $code){//暂时定为验证正确
@@ -42,6 +47,24 @@ class Sxg extends BaseController{
         }
     }
 
+    /**
+     * 检测用户是否登录
+     * @param $phone
+     * @return bool
+     */
+    public function check_user($phone){
+
+        if(!empty($_SESSION['user_id'])){
+            return true;
+        }
+        $this->load->model("sxg_user");
+        $user_id = $this->sxg_user->get_user_by_phone($phone);
+        if($user_id >0 ) {
+            $_SESSION['user_id'] = $user_id;
+            return true;
+        }
+        return false;
+    }
     /**
      * 发送验证码
      */
