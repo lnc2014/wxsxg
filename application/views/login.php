@@ -54,11 +54,14 @@ $base_js_url = $this->config->item('js_url');
     });
     $("#login").click(function(){
         var number = $("#mobile").val();
+        if(!number){
+            alert('手机号码不能为空！');
+            return;
+        }
         if (!check_phone(number)) {
             alert('请输入正确的手机号码');
             return false;
         }
-
         var code = $("#verify").val();
         if (!code) {
             alert('请输入验证码');
@@ -68,9 +71,8 @@ $base_js_url = $this->config->item('js_url');
             alert('验证码为6位阿拉伯数字');
             return false;
         }
-
         $.ajax({
-            url: "<?php echo site_url('sxg/check_code') ?>",
+            url: "/index.php/sxg/check_code",
             type: "POST",
             data: {
                 code: code,
@@ -81,7 +83,7 @@ $base_js_url = $this->config->item('js_url');
                 if (json.result != '0000') {
                     alert(json.info);
                 } else {
-                    location.href = '<?php echo site_url('sxg/quick_order')?>';
+                    location.href = '/index.php/sxg/quick_order?>';
                 }
             },
             error: function(){}

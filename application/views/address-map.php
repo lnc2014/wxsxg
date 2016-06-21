@@ -1,6 +1,6 @@
 <?php
 /**
- * Description:闪修哥快速下单
+ * Description:闪修哥新增地址
  * Author: LNC
  * Date: 2016/5/30
  * Time: 23:06

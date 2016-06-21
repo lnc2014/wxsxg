@@ -31,7 +31,6 @@ class Sxg extends BaseController{
             return;
         }
         session_start();
-
         if(!$this->check_user($phone)){
             echo $this->apiReturn('0002', new stdClass(), '用户不存在');
             return;
@@ -52,18 +51,23 @@ class Sxg extends BaseController{
      * @param $phone
      * @return bool
      */
-    public function check_user($phone){
+    public function check_user($phone = ''){
 
         if(!empty($_SESSION['user_id'])){
             return true;
         }
-        $this->load->model("sxg_user");
-        $user_id = $this->sxg_user->get_user_by_phone($phone);
-        if($user_id >0 ) {
-            $_SESSION['user_id'] = $user_id;
-            return true;
+        if(empty($phone)){
+            return false;
+        }else{
+            $this->load->model("sxg_user");
+            $user_id = $this->sxg_user->get_user_by_phone($phone);
+            if($user_id > 0 ) {
+                $_SESSION['user_id'] = $user_id;
+                return true;
+            }
+            return false;
         }
-        return false;
+
     }
     /**
      * 发送验证码
@@ -85,13 +89,63 @@ class Sxg extends BaseController{
     }
 
     /**
+     * 用户快速下单
+     */
+    public function add_order(){
+        $_SESSION['user_id'] = 1;
+        if(!$this->check_user()){
+            echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
+            exit();
+        };
+        $post = $this->input->post(NULL, TRUE);
+        $post['repair_option'] = trim($post['repair_option'],',');
+        $post['user_id'] = $_SESSION['user_id'];
+
+        $post['order_no'] = 'SXG'.date('YmdHis').rand(10000,99999);
+        $post['createtime'] = time();
+        $post['updatetime'] = time();
+        $this->load->model("sxg_order");
+        $order_id = $this->sxg_order->insert_data($post);
+        if($order_id > 0 ){
+            $data['order_id'] =  $order_id;
+            echo $this->apiReturn('0000', $data, 'success');
+            exit();
+        }
+
+    }
+    /**
      * 订单详情
      */
-    public function order_detail(){
+    public function order_detail($order_id = ''){
+        if(empty($order_id)){
+            exit("<script>alert('非法请求!');location.href='/index.php/sxg/index';</script>");
+        }
+        $this->load->model("sxg_order");
+        $order = $this->sxg_order->find_order_by_id($order_id);
+        if(empty($order)){
+            exit("<script>alert('订单信息不存在!');location.href='/index.php/sxg/index';</script>");
+        }
+        $repair_detail['print_band'] = empty($order['print_band'])?'':$order['print_band'];
+        $repair_detail['print_model'] = empty($order['print_model'])?'':$order['print_model'];
+        $repair_option = explode(',', $order['repair_option']);
+        $repair_info = '';
+        foreach($repair_option as $value){
+            if(is_numeric(strpos($value,'0001'))){
+                $repair_info = $repair_info.';'.'加粉';
+            }elseif(is_numeric(strpos($value,'0002'))){
+                $repair_info = $repair_info.';'.'打印质量差';
+            }elseif(is_numeric(strpos($value,'0003'))){
+                $repair_info = $repair_info.';'.'不能开机';
+            }elseif(is_numeric(strpos($value,'0004'))){
+                $repair_info = $repair_info.';'.'卡纸';
+            }
+        }
+        $repair_info = trim($repair_info, ';');
+        $repair_detail['repair_info'] = $repair_info.';'.$order['repair_problem'];
         $title = "订单填写";
-
         $this->load->view('order_detail',array(
-            'title' => $title
+            'title' => $title,
+            'repair_detail' => $repair_detail
         ));
     }
     public function address(){
@@ -107,6 +161,30 @@ class Sxg extends BaseController{
         $this->load->view('add-address',array(
             'title' => $title
         ));
+    }
+
+    /**
+     * 用户添加地址接口
+     */
+    public function add_user_address(){
+        $_SESSION['user_id'] = 1;
+        if(!$this->check_user()){
+            echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
+            exit();
+        };
+        $post = $this->input->post(NULL, TRUE);
+        $post['user_id'] = $_SESSION['user_id'];
+
+        $post['create_time'] = time();
+        $post['update_time'] = time();
+        $this->load->model("sxg_address");
+        $address_id = $this->sxg_address->insert_data($post);
+        if($address_id > 0 ){
+            $data['address_id'] =  $address_id;
+            echo $this->apiReturn('0000', $data, 'success');
+            exit();
+        }
+
     }
     public function address_map(){
         $title = "新增地址";

@@ -17,7 +17,7 @@ $base_img_url = $this->config->item('img_url');
 </style>
 <body>
 <div class="container">
-    <div class="div_address no_addr" onclick="location.href='<?php echo site_url('sxg/address')?>'">
+    <div class="div_address no_addr" onclick="location.href='/index.php/sxg/address'">
         <div class="default">请填写地址</div>
         <div class="contact">张三先生 &nbsp;&nbsp; 13578656765</div>
         <div class="address color_base">地址：xx省xx市xx区xx街道xx号xx层</div>
@@ -49,9 +49,10 @@ $base_img_url = $this->config->item('img_url');
     <div class="div_order_detail">
         <div class="d_row d_title border_bottom">订单详情</div>
         <div class="d_row color_base border_bottom">维修机器1</div>
-        <div class="d_row color_base border_bottom">机器品牌&nbsp;&nbsp;机器型号</div>
-        <div class="d_row color_base">故障描述：加粉（加墨）；不能开机</div>
+        <div class="d_row color_base border_bottom">机器品牌:<?php echo $repair_detail['print_band']?>&nbsp;&nbsp;机器型号:<?php echo $repair_detail['print_model']?></div>
+        <div class="d_row color_base">故障描述:<?php echo $repair_detail['repair_info']?></div>
     </div>
+
     <div class="remarks">
         <textarea class="textarea_remark" placeholder="备注"></textarea>
     </div>
