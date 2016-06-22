@@ -155,7 +155,7 @@ class Sxg extends BaseController{
             exit();
         };
         $this->load->model("sxg_address");
-        $address = $this->sxg_address->find_address_by_user_id($_SESSION['user_id']); 
+        $address = $this->sxg_address->find_address_by_user_id($_SESSION['user_id']);
         $this->load->view('address',array(
             'title' => $title,
             'address' => $address,
