@@ -83,7 +83,7 @@ $base_js_url = $this->config->item('js_url');
                 if (json.result != '0000') {
                     alert(json.info);
                 } else {
-                    location.href = '/index.php/sxg/quick_order?>';
+                    location.href = '/index.php/sxg/quick_order';
                 }
             },
             error: function(){}

@@ -14,6 +14,8 @@ class Index extends BaseController{
     }
 
     public function index(){
+
+        $this->load->view();
         echo 1;
     }
 }

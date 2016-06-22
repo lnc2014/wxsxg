@@ -10,8 +10,19 @@ $base_js_url = $this->config->item('js_url');
 $base_img_url = $this->config->item('img_url');
 ?>
 <style>
-    input[type='radio'] { margin-right: 0.3em; margin-top: -0.1em; background: url(<?php echo $base_img_url?>radio.png) no-repeat; background-size: 100% 100%; }
-    input[type='radio']:checked { background: url(<?php echo $base_img_url?>radio_checked.png) no-repeat; background-size: 100% 100%; }
+/*    input[type='radio'] { margin-right: 0.3em; margin-top: -0.1em; background: url(*/<?php //echo $base_img_url?>/*radio.png) no-repeat; background-size: 100% 100%; }*/
+/*    input[type='radio']:checked { background: url(*/<?php //echo $base_img_url?>/*radio_checked.png) no-repeat; background-size: 100% 100%; }*/
+    .test{
+        background: url(/static/images/radio_checked.png) no-repeat;
+        background-size: 100% 100%;
+    }
+    .test2{
+        margin-right: 0.3em;
+        margin-top: -0.1em;
+        background: url(/static/images/radio.png) no-repeat;
+        background-size: 100% 100%;
+    }
+
 </style>
 <body>
 <div class="container">
@@ -21,8 +32,8 @@ $base_img_url = $this->config->item('img_url');
             <div class="contact_info float_left">
                 <div class="contact_name border_bottom"><input type="text" id="input_name" name="contact_name" placeholder="您的姓名"></div>
                 <div class="contact_gender">
-                    <label class="gender1"><input type="radio" name="gender" value='1' id="man" checked>先生</label>
-                    <label><input type="radio" name="gender" value='0' id="woman">女士</label>
+                    <label class="gender1"><input type="radio" name="gender" value='1' id="man" class="test">先生</label>
+                    <label><input type="radio" name="gender" value='0' id="woman" class="test2">女士</label>
                 </div>
             </div>
         </div>
@@ -65,20 +76,33 @@ $base_img_url = $this->config->item('img_url');
         $("#man").click(function () {
             var is_man = $("#is_man").val(1);
             var is_woman = $("#is_woman").val(0);
+            $('#woman').removeClass('test');
+            $('#man').removeClass('test2');
+            $('#woman').addClass('test2');
+            $('#man').addClass('test');
+
         });
         $("#woman").click(function () {
             var is_woman = $("#is_woman").val(1);
             var is_man = $("#is_man").val(0);
+            $('#man').removeClass('test');
+            $('#man').addClass('test2');
+            $('#woman').removeClass('test2');
+            $('#woman').addClass('test');
+        });
+        $("#default").click(function () {
+            var is_default = $("#is_default").val();
+            if(is_default == 0){
+                $("#is_default").val(1);
+                $('#default').addClass('test');
+                $('#default').removeClass('test2');
+            }else if(is_default == 1){
+                $("#is_default").val(0);
+                $('#default').addClass('test2');
+                $('#default').removeClass('test');
+            }
 
         });
-//        $("#default").click(function () {
-//            var is_default = $("#is_default").val();
-//
-////            $('#default').css('background', 'url(http://127.0.0.1/wxsxg/static/images/radio.png)');
-//            var is_woman = $("#is_woman").val(1);
-//            var is_man = $("#is_man").val(0);
-//
-//        });
         $('#btn-sure').click(function(){
             var name = $('#input_name').val();
             if(!name){
@@ -87,6 +111,7 @@ $base_img_url = $this->config->item('img_url');
             }
             var is_woman = $("#is_woman").val();
             var is_man = $("#is_man").val();
+            var is_default = $("#is_default").val();
             var prov = $(".prov").val();
             var city = $(".city").val();
             var dist = $(".dist").val();
@@ -115,7 +140,7 @@ $base_img_url = $this->config->item('img_url');
                     area : dist,
                     name : name,
                     street : street,
-                    is_default : 1
+                    is_default : is_default
                 },
                 dataType: "json",
                 success: function(json){

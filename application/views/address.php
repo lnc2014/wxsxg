@@ -14,22 +14,18 @@ $base_img_url = $this->config->item('img_url');
 <div class="container">
     <div class="address_list">
         <div class="sel_add_lbl color_base border_bottom">可选地址</div>
-        <div class="div_addr border_bottom selected">
-            <div class="float_left">
-                <div class="contact">张三  先生 13245678967</div>
-                <div class="address color_base">地址：深圳市南山区1202号（双湖湾）</div>
-            </div>
-            <a href="address_edit.html"><div class="edit float_right">编辑</div></a>
-            <i></i>
-        </div>
-        <div class="div_addr">
-            <div class="float_left">
-                <div class="contact">张三  先生 13245678967</div>
-                <div class="address color_base">地址：深圳市南山区1202号（双湖湾）</div>
-            </div>
-            <a href="address_edit.html"><div class="edit float_right">编辑</div></a>
-            <i></i>
-        </div>
+        <?php
+            foreach($address as $val){?>
+                <div class="div_addr border_bottom">
+                    <div class="float_left">
+                        <div class="contact"><?php echo $val['name'].'&nbsp'; if($val['sex'] == 1){ echo '先生'.'&nbsp';}else{ echo '女士'.'&nbsp';} echo $val['mobile'];?>  </div>
+                        <div class="address color_base">地址：<?php  echo $val['province'].$val['city'].$val['area'].$val['street']?></div>
+                    </div>
+                    <a href="/index.php/sxg/add_address/<?php echo $val['address_id'] ?>"><div class="edit float_right">编辑</div></a>
+                    <i></i>
+                </div>
+         <?php  } ?>
+
     </div>
     <div class="btn_oprs align_center">
         <a href="/index.php/sxg/add_address"><button class="btn btn_l" type="button">新增地址</button></a>
