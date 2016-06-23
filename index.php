@@ -224,6 +224,7 @@ switch (ENVIRONMENT)
  * -------------------------------------------------------------------
  */
 	// The name of THIS file
+	define("ROOTPATH", str_replace("\\", "/", (realpath(dirname(__FILE__))).'/')) ;
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
 	// Path to the system directory

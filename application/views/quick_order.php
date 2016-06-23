@@ -49,17 +49,16 @@ $base_img_url = $this->config->item('img_url');
                     <div><label><input type="checkbox" id="problem4" name="isAddPowder">&nbsp;&nbsp;卡纸(卡纸的位置需拍照上传或详细说明)</label></div>
                 </div>
                 <div class="detail_row">
-                    <textarea class="description" id = "description" placeholder="如非上述四项问题，请在这里描述" id="other"></textarea>
+                    <textarea class="description" id="description"  placeholder="如非上述四项问题，请在这里描述"></textarea>
                     <p>上传照片</p>
                     <div class="div_images">
-                        <div class="img_li float_left">
-                            <img src="/static/images/add.png" class="full_width full_height">
-                        </div>
-                        <div class="img_li float_left">
-                            <img src="/static/images/add.png" class="full_width full_height">
+
+                        <div class="img_li add_li float_left">
+                            <input type="file" class="file" name="file_upload"  id="file_upload">
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -76,7 +75,9 @@ $base_img_url = $this->config->item('img_url');
         <button class="btn btn_l" type="button" id="submit_order">下一步</button>
     </div>
 </div>
-<script type="text/javascript" src="<?php echo $base_js_url ?>zepto.min.js"></script>
+<!--<script type="text/javascript" src="--><?php //echo $base_js_url ?><!--zepto.min.js"></script>-->
+<script src="/static/js/jquery.1.71.js" type="text/javascript"></script>
+<script src="/static/js/jquery.uploadify.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     var i = 1;
     $(".repair_devices").on("click",'.device',function(){
@@ -271,6 +272,31 @@ $base_img_url = $this->config->item('img_url');
 
             $(".repair_row").addClass('shrink');
     }
+
+
+</script>
+<script>
+    $(function() {
+        $("#file_upload").uploadify({
+            'auto'     : true,
+            'uploader' : '/index.php/sxg/upload',
+            'swf' 	   : '/static/js/uploadify.swf',
+            'buttonText'    : '',
+            'fileTypeExts'  : '*.jpg;*.jpeg;*.png',
+            'dataType' : 'json',
+            'onUploadSuccess' : function(file, data, response) {
+                var ret = jQuery.parseJSON(data);
+                if(ret.result == '0000'){
+                    var html = '<div class="img_li float_left">'+
+                        '<img src="'+ret.data.path+'" class="full_width full_height">'+
+                        '<img src="/static/images/close.png" class="close">'+
+                        '</div>';
+                    alert(html);
+                     $('.div_images').append(html);
+                }
+            }
+        });
+    });
 </script>
 </body>
 </html>

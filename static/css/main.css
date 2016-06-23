@@ -72,6 +72,8 @@ input[type='checkbox'],
 input[type='radio'] { width: 1.1325em; height: 1.1325em; }
 input[type='checkbox'] { margin-right: -0.3em; margin-top: -0.1em; background: url(../images/unchecked.png) no-repeat; background-size: 100% 100%; }
 input[type='checkbox']:checked { background: url(../images/checked.png) no-repeat; background-size: 100% 100%; }
+input[type='radio'] { margin-right: 0.3em; margin-top: -0.1em; background: url(../images/radio.png) no-repeat; background-size: 100% 100%; }
+input[type='radio']:checked { background: url(../images/radio_checked.png) no-repeat; background-size: 100% 100%; }
 
 @media screen and (min-width: 320px) { body { font-size: 62.5%; } }
 @media screen and (min-width: 360px) { body { font-size: 70%; } }
@@ -151,6 +153,8 @@ input[type='checkbox']:checked { background: url(../images/checked.png) no-repea
 .repair_row .device_detail .detail_row textarea.description { width: 100%; height: 5em; font-size: 0.9125em; border: 0.1em solid #b9b9b9; resize: none; padding: 0.2em 0.3em; margin-bottom: 0.75em; }
 .div_images { width: 100%; height: 5em; padding-top: 0.75em; overflow: hidden; }
 .div_images .img_li { position: relative; width: 4.25em; height: 4.25em; margin-right: 1em; }
+.div_images .img_li.add_li {background: url(http://sxg.me/static/images/add.png) no-repeat; background-size: 100% 100%; }
+.div_images .img_li.add_li .file { width: 100%; height: 100%; opacity: 0; }
 .div_images .img_li:last-child { margin-right: 0; }
 .div_images .img_li .close { position: absolute; top: -0.2em; right: -0.2em; width: 0.9375em; height: 0.9375em; }
 .addDevice_row { text-align: right; padding: 0.5em; font-size: 1.6em; }

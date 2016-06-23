@@ -163,7 +163,6 @@ class Sxg extends BaseController{
     }
     public function add_address(){
         $title = "新增地址";
-
         $this->load->view('add-address',array(
             'title' => $title,
 
@@ -230,6 +229,19 @@ class Sxg extends BaseController{
             return;
         }
         //TODO 意见反馈
-
     }
+    /**
+     * 上传
+     */
+    public function upload(){
+        $this->load->library('upload_image');
+        $ret = $this->upload_image->upload('Filedata');
+        if($ret['is_success']){
+            echo $this->apiReturn('0000', $ret, 'success');
+            return;
+        }
+        echo $this->apiReturn('0002', $ret, '上传失败');
+        return;
+    }
+
 }
