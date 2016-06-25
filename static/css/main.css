@@ -152,11 +152,11 @@ input[type='radio']:checked { background: url(../images/radio_checked.png) no-re
 .repair_row .device_detail .detail_row .input.input2 { margin-left: 0.8em; }
 .repair_row .device_detail .detail_row textarea.description { width: 100%; height: 5em; font-size: 0.9125em; border: 0.1em solid #b9b9b9; resize: none; padding: 0.2em 0.3em; margin-bottom: 0.75em; }
 .div_images { width: 100%; height: 5em; padding-top: 0.75em; overflow: hidden; }
-.div_images .img_li { position: relative; width: 4.25em; height: 4.25em; margin-right: 1em; }
+.div_images .img_li { position: relative; width: 18%; height: 4.25em; margin-right: 1em; }
 .div_images .img_li.add_li {background: url(http://sxg.me/static/images/add.png) no-repeat; background-size: 100% 100%; }
 .div_images .img_li.add_li .file { width: 100%; height: 100%; opacity: 0; }
 .div_images .img_li:last-child { margin-right: 0; }
-.div_images .img_li .close { position: absolute; top: -0.2em; right: -0.2em; width: 0.9375em; height: 0.9375em; }
+.div_images .img_li .close1 { position: absolute; top: -0.2em; right: -0.2em; width: 0.9375em; height: 0.9375em; }
 .addDevice_row { text-align: right; padding: 0.5em; font-size: 1.6em; }
 .addDevice_row .btn_addDevice { font-size: 0.75em; color: #f38001; padding: 0.5em; }
 

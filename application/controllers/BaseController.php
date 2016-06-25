@@ -13,6 +13,7 @@ class BaseController extends CI_Controller
     {
         parent::__construct();
         $this->load->helper('url');
+        $this->check_user();
     }
 
     /**
@@ -29,5 +30,16 @@ class BaseController extends CI_Controller
         $arr["info"] = $info;
         $res = json_encode($arr);
         return $res;
+    }
+    /**
+     * 检测用户是否登录
+     * @param $phone
+     * @return bool
+     */
+    public function check_user(){
+        $_SESSION['user_id'] = 1;//测试
+        if(!isset($_SESSION['user_id'])){
+            redirect('sxg/index');
+        }
     }
 }

@@ -98,6 +98,9 @@ class Sxg extends BaseController{
             exit();
         };
         $post = $this->input->post(NULL, TRUE);
+        var_dump($post);exit;
+        $post['repair_pic'] = trim($post['img'], ';');
+        unset($post['img']);
         $post['repair_option'] = trim($post['repair_option'],',');
         $post['user_id'] = $_SESSION['user_id'];
 
@@ -235,8 +238,11 @@ class Sxg extends BaseController{
      */
     public function upload(){
         $this->load->library('upload_image');
-        $ret = $this->upload_image->upload('Filedata');
+        $ret = $this->upload_image->upload('file');
+
         if($ret['is_success']){
+            $ret['path2'] = str_replace(ROOTPATH, '', $ret['path']);//将路径换成相对路径
+            $ret['path'] = 'http://'.$_SERVER['HTTP_HOST'].'/'.$ret['path2'];//将路径换成相对路径
             echo $this->apiReturn('0000', $ret, 'success');
             return;
         }
@@ -244,4 +250,7 @@ class Sxg extends BaseController{
         return;
     }
 
+    public function test(){
+        $this->load->view('test');
+    }
 }
