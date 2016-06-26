@@ -2,7 +2,7 @@
 session_start();
 require_once "./lib/WxPayException.php";
 require_once "./lib/WxPayApi.php";
-require_once "./lib/WxPayConfig.php";
+require_once "./lib/WxPayConfig.production.php";
 require_once "./lib/WxPayJsApiPay.class.php";
 
 $tools = new JsApiPay();

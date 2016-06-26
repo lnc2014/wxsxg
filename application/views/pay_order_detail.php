@@ -107,7 +107,26 @@ $this->load->view('common/header',array('title'=>$title));
 </script>
 <script type="text/javascript">
 
+    function jspay(){
+        if (!order_data.price || !order_data.order_num) {
+            alert('参数错误');
+            return false;
+        }
 
+        $.ajax({
+            type: "POST",
+            url: "/index.php/sxg/wxpay_params",
+            data: {
+            },
+            dataType: "json",
+            success: function(json){
+                callpay(json);
+            },
+            error: function(){
+                alert('加载失败');
+            }
+        });
+    }
     //调用微信JS api 支付
     function jsApiCall(jsApiParameters)
     {

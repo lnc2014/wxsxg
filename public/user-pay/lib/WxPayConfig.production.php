@@ -28,13 +28,34 @@ class WxPayConfig
         self::$key = $config['key'];
         self::$appSecret = $config['appSecret'];
     }
-    
-	const APPID = 'wx15840f73ecbda830';
-	const MCHID = '1353758202';
-	const KEY = 'letubaocwzl201605200084weixinpay';
-	const APPSECRET = '8f8f813c3830f60f1845f1c44691afff';
-	const NOTIFY_URL = 'http://cw.dudubashi.com/public/user-pay/notify.php';
-	const REDIRECT_URL = 'http://cw.dudubashi.com/public/user-pay/index.php';
+
+
+//微信公众号登录地址：
+//https://mp.weixin.qq.com/
+//
+//闪修哥：
+//账号：
+//sz1nan
+//
+//密码:stone123
+//
+//appid:wxf4d074259aa6be58
+//
+//AppSecret(应用密钥)b252e4744323b86a69ed7aebea508a92
+//
+//
+//微信支付平台：
+//
+//登录账号：
+//商户号1231946702
+//
+//支付秘钥key：shanxiugelnc20160605888weixinpay
+	const APPID = 'wxf4d074259aa6be58';
+	const MCHID = '1231946702';
+	const KEY = 'shanxiugelnc20160605888weixinpay';
+	const APPSECRET = 'b252e4744323b86a69ed7aebea508a92';
+	const NOTIFY_URL = 'http://sxg.lnctime.com/public/user-pay/notify.php';
+	const REDIRECT_URL = 'http://sxg.lnctime.com/public/user-pay/index.php';
 	public static $appId = null;
     public static $mchId = null;
     public static $key = null;

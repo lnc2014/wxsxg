@@ -126,6 +126,7 @@ class Sxg extends BaseController{
             echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
             exit();
         };
+
         $user_id  = $_SESSION['user_id'];
         $this->load->model("sxg_order");
         $this->load->model("sxg_address");
@@ -181,6 +182,11 @@ class Sxg extends BaseController{
             echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
             exit();
         };
+        //微信支付需要的openid
+        $open_id = $this->get_user_openid();
+        if(!empty($open_id)){
+            $_SESSION['jspayOpenId'] = $open_id;
+        }
         $user_id  = $_SESSION['user_id'];
         $this->load->model("sxg_order");
         $this->load->model("sxg_address");
@@ -427,5 +433,47 @@ class Sxg extends BaseController{
                 return "已取消";
                 break;
         }
+    }
+
+    /**
+     * 获取微信用户openid
+     * @return string
+     */
+    public function get_user_openid(){
+        include_once(FCPATH . "public/user-pay/WxOpenIdHelper.php");
+        $wxopenidhelper = new WxOpenIdHelper();
+        return $wxopenidhelper->getOpenId();
+    }
+    /**
+     * 微信支付参数拼接
+     */
+    public function wxpay_params(){
+
+        $attach = '';//附加数据，支付用户ID和订单编号和司机id
+        $total_fee = 1;
+        $openid = $_SESSION['jspayOpenId'];
+        include_once(FCPATH . 'public/user-pay/lib/WxPayException.php');
+        include_once(FCPATH . 'public/user-pay/lib/WxPayApi.php');
+        include_once(FCPATH . 'public/user-pay/lib/WxPayConfig.production.php');
+        include_once(FCPATH . 'public/user-pay/lib/WxPayJsApiPay.class.php');
+        include_once(FCPATH . 'public/user-pay/lib/WxPayData.php');
+        $tools = new JsApiPay();
+        $input = new WxPayUnifiedOrder();
+        $input->SetBody('闪修哥微信费用支付');
+        $input->SetAttach($attach);
+        $input->SetOut_trade_no('shanxiuge'.date("YmdHis").rand(1000,9999));    //订单号
+
+        $input->SetOut_trade_no(date("YmdHis"));
+        //$input->SetTotal_fee($total_fee * 100);   //总费用
+        $input->SetTotal_fee($total_fee);   //总费用
+
+        $input->SetTime_start(date("YmdHis"));
+        //$input->SetTime_expire(date("YmdHis", time() + 1200));
+        $input->SetNotify_url(WxPayConfig::NOTIFY_URL);   //支付回调地址，这里改成你自己的回调地址。
+        $input->SetTrade_type("JSAPI");
+        $input->SetOpenid($openid);
+        $order = WxPayApi::unifiedOrder($input);
+        $jsApiParameters = $tools->GetJsApiParameters($order);
+        echo $jsApiParameters;
     }
 }
