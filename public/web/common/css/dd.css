@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+}
+
+body {
+  line-height: initial;
+  background: #f1f1f1;
+  overflow-x: hidden;
+}
+
+body .container {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.f_red {
+  color: #ff4a39;
+}
+
+.f_price_red {
+  color: #ff4a39;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.mt_15 {
+  margin-top: 15px;
+}
+
+.dpage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.weui_navbar_item.weui_bar_item_on {
+  position: relative;
+  color: #ff4a39;
+  background-color: #fff;
+  font-size: 1rem;
+}
+
+.weui_navbar_item:after {
+  display: none;
+}
+
+.weui_navbar_item.weui_bar_item_on:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #ff4a39;
+}
+
+.weui_btn_warn {
+  background-color: #ff4a39;
+}
+
+.dd_btn {
+  color: #fff;
+  background-color: #ff4a39;
+  border-radius: 3px;
+  padding: 15px 0;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.tel_a {
+  text-decoration: underline;
+}
+
+.i_on, .i_off, .i_clock, .i_to, .i_tdcode, .i_start, .i_end, .i_cross, .i_add, .i_del, .i_clear {
+  display: inline-block;
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+  margin-right: 15px;
+}
+
+.i_start, .i_end, .i_cross, .i_clear, .i_add, .i_del {
+  vertical-align: -2px;
+  margin-right: 15px;
+}
+
+.i_add, .i_del {
+  margin-right: 0;
+}
+
+.i_clear {
+  display: none;
+}
+
+.i_on {background-repeat: no-repeat;}
+
+.i_off {background-repeat: no-repeat;}
+
+.i_clock {background-repeat: no-repeat;}
+
+.i_start {background-repeat: no-repeat;}
+
+.i_cross {background-repeat: no-repeat;}
+
+.i_end {background-repeat: no-repeat;}
+
+.i_add {background-repeat: no-repeat;}
+
+.i_del {background-repeat: no-repeat;}
+
+.i_clear {background-repeat: no-repeat;}
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size: 13.5px;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 414px) {
+  html {
+    font-size: 15.5px;
+  }
+}
+.i_on{background-position:0px 0px}.i_off{background-position:-20px 0px}.i_clock{background-position:0px -20px}.i_start{background-position:-20px -20px}.i_cross{background-position:-40px 0px}.i_end{background-position:-40px -20px}.i_add{background-position:0px -40px}.i_del{background-position:-20px -40px}.i_clear{background-position:-40px -40px}.i_on,.i_off,.i_clock,.i_start,.i_cross,.i_end,.i_add,.i_del,.i_clear{background-size: 60px 55px;background-image: url(/public/web/common/css/dd_0.5_z.png)}

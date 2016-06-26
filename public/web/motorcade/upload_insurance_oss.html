@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>upload_oss</title>
+<link href="/public/theme/INSPINIA/js/plugins/uploadify/uploadify.css" rel="stylesheet">
+</head>
+
+<body>
+	<form style='cursor: pointer;'>
+		<div id="queue"></div>
+		<input id="Filedata" name="Filedata" type="file" multiple="true">
+	</form>
+
+<script src="/public/theme/INSPINIA/js/jquery-2.1.1.js"></script>
+<script src="/public/theme/INSPINIA/js/plugins/uploadify/jquery.uploadify.min.js"></script>
+<!-- <script src="/public/theme/INSPINIA/js/jquery.uploadify.min.js"></script> -->
+<script type="text/javascript">
+$(function(){
+	$('#Filedata').uploadify({
+		'width' : '200px',
+		'height' : '100px',
+		'uploader' : '/index.php/common/uploadify',
+		'swf'      : '/public/theme/INSPINIA/js/plugins/uploadify/uploadify.swf',
+		'cancelImg': '/public/theme/INSPINIA/js/plugins/uploadify/uploadify-cancel.png',
+		'fileTypeExts'  : '*.jpg;*.jpeg;*.png',
+		'dataType' : 'json',
+		'onUploadSuccess':function(file,data,response)
+		{
+			var res = jQuery.parseJSON(data);
+			if (res.result == '0000') {
+				var info = res.data;
+				//console.log($('#pic-show-box > img',window.parent.document), info.file_url);
+				$('#pic-insurance',window.parent.document).val(info.file_path);
+				var parent_photo_box = $('#pic-insurance-show',window.parent.document)
+				parent_photo_box.prop('src', info.file_url);
+				parent_photo_box.siblings('h1').prop('class', 'has');
+				parent_photo_box.siblings('h1').find('p').text('重新上传');
+
+			} else {
+				alert('上传图片失败，请稍候再试。');
+			}
+		}
+	});
+});
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,2 @@
+/*TMODJS:{"version":2,"md5":"335393f76735e9be3ca62cdc97c68990"}*/
+var template=require("common/templates/build/template");module.exports=template("cross",' <div class="weui_cell"> <div class="weui_cell_hd"><i class="i_cross"></i></div> <div class="weui_cell_bd weui_cell_primary"> <input type="hidden" id="hidden_cplace"> <input class="weui_input" id="" placeholder="\u8bf7\u8f93\u5165\u9014\u5f84\u5730\u70b9"> </div> <div class="weui_cell_hd"><i class="i_clear"></i></div> <div class="weui_cell_hd"><i class="i_del"></i></div> </div> ');

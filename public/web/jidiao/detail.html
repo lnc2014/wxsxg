@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">待报价订单</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/0.4.2/weui.css" />
+    <link rel="stylesheet" type="text/css" href="/public/web/common/components/jidiao/order.css" />
+</head>
+<style>
+
+    .tdcode_wrap{
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background:#ff4a39;
+    }
+    .tdcode_cantainer:before{
+        content:'';
+        position: absolute;
+        top:0;
+        width:40px;
+        height:40px;
+        background-color: #ff4a39;
+        border-radius: 100%;
+        left:50%;
+        transform:translate3d(-50%,-50%,0);
+        -webkit-transform:translate3d(-50%,-50%,0);
+        -moz-transform:translate3d(-50%,-50%,0);
+        -o-transform:translate3d(-50%,-50%,0);
+    }
+    .tdcode_cantainer{
+        position:absolute;
+        top:50%;
+        left:45%;
+        transform:translate3d(-50%,-50%,0);
+        -webkit-transform:translate3d(-50%,-50%,0);
+        -moz-transform:translate3d(-50%,-50%,0);
+        -o-transform:translate3d(-50%,-50%,0);
+        background:#fff;
+        min-height:200px;
+        min-width: 100px;
+        border-radius: 5px;
+        text-align: center;
+        padding:1.78rem;
+        white-space: nowrap;
+        letter-spacing: 2px;
+        color:#3f3f4d;
+    }
+    .tdcode_cantainer > p {
+        margin: 10px 0;
+    }
+    .tdcodeimg{
+        max-width: 16rem;
+    }
+    .tdcode_title{
+        position:relative;
+    }
+    .tdcode_title:after,.tdcode_title:before{
+        content: '';
+        width: 3rem;
+        height: 1px;
+        margin: 0 5px;
+        background: #d9d9d9;
+        left: 0;
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>
+<body>
+	<div class="tk_wrap">
+        <div class="tk_it from_place">
+            <i class="i_on"></i>
+            <div id = "from_place">深圳南山区科智西路5号</div>
+        </div>
+
+        <div class="tk_it">
+            <i class="i_off"></i>
+            <div id = "to_place">广州长隆野生动物世界</div>
+        </div>
+        <div class="tk_it"><span class="tk_it_title">订单号</span><span id="order_num">DD12345678946565</span></div>
+        <div class="tk_it"><span class="tk_it_title">出发时间</span><span id="start_time">2016-11-01 09:00</span></div>
+        <div class="tk_it back_time"><span class="tk_it_title">返程时间</span><span id ="back_time">2016-11-01 09:00</span></div>
+    </div>
+
+    <div class="tk_wrap" id="people">
+        <div class="tk_it"><span class="tk_it_title">乘车人数</span><span id="person_num">100</span>人</div>
+        <div class="tk_it"><span class="tk_it_title">车辆数</span><span id="bus_num" >3</span>辆</div>
+        <div class="tk_it"><span class="tk_it_title">联系人</span><span id="name">王大大</span></div>
+        <div class="tk_it"><span class="tk_it_title">联系方式</span><span id="mobile">187800611111</span></div>
+        <div class="tk_it"><span class="tk_it_title">其他信息</span><span id="other_info">包住宿+包餐饮</span></div>
+        <div class="tk_it invoice"><span class="tk_it_title">发票抬头</span><span id="invoice">深圳市某某某某某某科技有限公司</span></div>
+        <div class="tk_it"><span class="tk_it_title">备注</span><span id="user_remark">备注备注备注备注备注备注备注备注</span></div>
+    </div>
+
+
+    <!--<div class="weui_cells weui_cells_checkbox">-->
+        <!--<label class="weui_cell weui_check_label" for="s11">-->
+            <!--<div class="weui_cell_hd">-->
+                <!--<input type="checkbox" class="weui_check" name="checkbox1" id="s11" checked="checked">-->
+                <!--<i class="weui_icon_checked"></i>-->
+            <!--</div>-->
+            <!--<div class="weui_cell_bd weui_cell_primary">-->
+                <!--<p>是否需要预付款</p>-->
+            <!--</div>-->
+        <!--</label>-->
+    <!--</div>-->
+
+
+    <div class="tdcode_wrap" id="show_code" style="display: none;">
+        <div class="tdcode_cantainer">
+            <p class="tdcode_title">客户扫下方二维码</p>
+            <p>进入线上快捷支付流程</p>
+            <div><img id="tdCode" class="tdcodeimg" src="http://diaodu.me/common/create_qrcode?url=http://diaodu.me/user/view_order/2905" alt=""></div>
+        </div>
+    </div>
+    <button style="display: none" class="dd_btn commit_btn" id = "pay" onclick="showPayTdcode();">分享订单</button>
+    <input style="display: none" type="button" class="dd_btn commit_btn" id= "paiche" onclick="comfirm();" value="确认">
+    <script src="/public/web/js/zepto.min_43dde47.js"></script>
+    <input type="hidden" id="motorcade_id">
+<script type="text/javascript" src="/public/web/common/js/lib/mod.js"></script>
+<script type="text/javascript" src="/public/web/common/components/jidiao/index.js"></script>
+<script type="text/javascript">
+    require('common/components/jidiao/index');
+</script>
+<script>
+    /**
+     * [显示二维码]
+     */
+    function showPayTdcode(){
+        $("#show_code").css('display','block');
+        $('#show_code').click(function(){
+            $("#show_code").css('display','none');
+        });
+    }
+    /**
+     *排车
+     */
+    function comfirm(){
+        $("#paiche").attr("disabled", true);
+        var m_id = '';
+        var driver_userid = '';
+        var consult_price = 0;
+        var search_buscode = '';
+        var search_phone = '';
+        var search_chauffeur = '';
+        var v_id = '';
+        $.each(car, function(index, item){
+            m_id = m_id + ',' + item.m_id;
+            driver_userid = item.ltb_driver_user_id + ',' + driver_userid;
+            consult_price = consult_price + ',' + 0;
+            search_buscode = search_buscode + ',' + item.bus_code;
+            search_chauffeur = search_chauffeur + ',' + item.user_name;
+            search_phone = search_phone + ',' + item.phone_number;
+            v_id = v_id + ',' + item.ltb_vehicle_id;
+
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/charter/charter/motorcade_allot",
+            data: {
+                m_id:m_id,
+                driver_userid:driver_userid,
+                consult_price:consult_price,
+                search_buscode:search_buscode,
+                search_chauffeur:search_chauffeur,
+                search_phone:search_phone,
+                order_id:order.order_id,
+                from_place:order.from_place,
+                to_place:order.to_place,
+                start_time:order.start_time1,
+                contact_phone:order.contact_phone,
+                charter_type:order.charter_type,
+                v_id:v_id
+            },
+            dataType: "json",
+            success: function(json){
+                if(json.result == '0000'){
+                    alert('排车成功');
+                    window.location =  window.location;
+                }else if(json.result == '0004') {
+                    alert('暂时只支持在微信登录');
+                }else if(json.result == '0005'){
+                    window.location = '/admin/get_operator_openid';
+                }else{
+                    alert(json.info);
+                }
+            },
+            error: function(){
+                $("#paiche").attr("disabled", false);
+                alert("加载失败");
+            }
+        });
+
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计调订单列表</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/0.4.2/weui.css" />
+    <link rel="stylesheet" type="text/css" href="/public/web/common/components/jidiao/order.css" />
+</head>
+<body>
+<div>
+	<div class="navbar" id="nav">
+		<div class="bd" style="height: 100%;">
+		    <div class="weui_tab">
+		        <div class="weui_navbar">
+		            <div class="weui_navbar_item weui_bar_item_on" id="all">
+		                <a href="/public/web/jidiao/orders.html" style="color: black">全部</a>
+		            </div>
+		            <div class="weui_navbar_item" id="pay">
+						<a href="/public/web/jidiao/orders.html?status=10" style="color: black">待付订金</a>
+		            </div>
+		            <div class="weui_navbar_item" id="paiche">
+						<a href="/public/web/jidiao/orders.html?status=4" style="color: black">待排车</a>
+		            </div>
+		            <div class="weui_navbar_item" id="left">
+						<a href="/public/web/jidiao/orders.html?status=11" style="color: black"> 待付尾款</a>
+		            </div>
+		            <div class="weui_navbar_item" id="finish">
+						<a href="/public/web/jidiao/orders.html?status=7" style="color: black">已完成</a>
+		            </div>
+		        </div>
+		        <div class="weui_tab_bd"></div>
+		    </div>
+		</div>
+	</div>
+
+</div>
+<script src="/public/web/js/zepto.min_43dde47.js"></script>
+<script type="text/javascript" src="/public/web/common/js/lib/mod.js"></script>
+<script>
+//	状态：-1为全部订单，待付订金为10，待排车为4，待付尾款为11，待完成为5
+	function getQueryString(name){
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if(r!=null)return  unescape(r[2]); return null;
+	}
+	$(function(){
+		var status = getQueryString('status');
+		if(status == null){
+			getdata(-1);
+		}else if(status == 4){
+			$('#paiche').addClass('weui_bar_item_on');
+			$('#all').removeClass('weui_bar_item_on');
+			$('#left').removeClass('weui_bar_item_on');
+			$('#pay').removeClass('weui_bar_item_on');
+			$('#finish').removeClass('weui_bar_item_on');
+			getdata(4);
+
+		}else if(status == 10){
+			$('#pay').addClass('weui_bar_item_on');
+			$('#all').removeClass('weui_bar_item_on');
+			$('#left').removeClass('weui_bar_item_on');
+			$('#paiche').removeClass('weui_bar_item_on');
+			$('#finish').removeClass('weui_bar_item_on');
+			getdata(10);
+
+		}else if(status == 11){
+			$('#left').addClass('weui_bar_item_on');
+			$('#all').removeClass('weui_bar_item_on');
+			$('#pay').removeClass('weui_bar_item_on');
+			$('#paiche').removeClass('weui_bar_item_on');
+			$('#finish').removeClass('weui_bar_item_on');
+			getdata(11);
+
+		}else if(status == 7){
+			$('#finish').addClass('weui_bar_item_on');
+			$('#all').removeClass('weui_bar_item_on');
+			$('#left').removeClass('weui_bar_item_on');
+			$('#paiche').removeClass('weui_bar_item_on');
+			$('#pay').removeClass('weui_bar_item_on');
+			getdata(7);
+
+		}
+	});
+	function getdata(status){
+		$.ajax({
+			type: "POST",
+			url: "/admin/order_list",
+			data: {
+				status : status
+			},
+			dataType: "json",
+			success: function(json){
+				var data = json.data;
+
+				if(json.result == '0000'){ 
+					data.reverse();
+					$.each(data, function(index, item){
+						var cplacr = '';
+						if(item.mid_sites.length > 0){
+							$.each(item.mid_sites, function(index, item){
+								cplacr = cplacr + '<div class="tk_it" id="cplace">'+
+										'<i class="i_cross"></i>'+
+										'<div class="tk_cell_primary">'+item.address+'</div>'+
+										'<i class="i_to"></i>'+
+										'</div>';
+							});
+						}
+						var html = '<div class="tk_container">'+
+								'<a class="tk_wrap" href="detail.html?order_id='+item.order_id+'">'+
+								'<div class="tk_it">'+
+								'<i class="i_on"></i>'+
+								'<div class="tk_cell_primary">'+item.from_place+'</div>'+
+								'<span class="tk_cell_status" style="color: red">- '+item.status_info+' -</span>'+
+								'</div>'+cplacr+
+								'<div class="tk_it">'+
+								'<i class="i_off"></i>'+
+								'<div class="tk_cell_primary">'+item.to_place+'</div>'+
+								'<i class="i_to"></i>'+
+								'</div>'+
+								'<div class="tk_it">'+
+								'<i class="i_clock"></i>'+
+								'<div class="tk_cell_primary">'+item.start_time+'</div>'+
+								'<div class="f_red"><span class="val_a_rvise">￥</span><span class="f_price_red">'+item.price+'</span></div>'+
+								'</div>'+
+								'<div class="tk_c_time">下单时间：'+item.create_time+'</div>'+
+								'</a>'+
+								'</div>';
+						$('#nav').after(html);
+					});
+				}else if(json.result == '0004') {
+					alert('暂时只支持在微信登录');
+				}else if(json.result == '0005'){
+					window.location = '/admin/get_operator_openid';
+				}else{
+					alert(json.info);
+				}
+			},
+			error: function(){
+				alert("加载失败");
+			}
+		});
+	}
+</script>
+</body>
+</html>

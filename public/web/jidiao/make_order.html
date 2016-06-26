@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单填写</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/open/libs/weui/0.4.2/weui.css" />
+    <link rel="stylesheet" type="text/css" href="/public/web/common/components/jidiao/order.css" />
+    <style type="text/css">
+		.weui_btn_warn{
+		    margin:15px;
+		}
+		.tangram-suggestion-main{
+		    z-index:1;
+		    left:50% !important;
+		    width: auto !important;
+		    white-space: nowrap;
+		    max-width: 90%;
+		    transform: translate3d(-50%,0,0);
+		    -wekbit-transform: translate3d(-50%,0,0);
+		    -moz-transform: translate3d(-50%,0,0);
+		    -o-transform: translate3d(-50%,0,0);
+		}
+		.weui_cells{font-size:1rem;line-height: initial;margin-top:15px;}
+	</style>
+</head>
+<body>
+<div id="charterOrder" class="container">
+    <div class="head_img" style= "position:relative;margin-bottom:-5px;">
+        <div style= "position:absolute; left:20px; top:30px;font-weight:bold "><h1 id="chedui_name"></h1></div>
+        <img src="/public/web/images/od_title.jpg"/>
+    </div>
+    <!--起终点-->
+    <div class="weui_cells weui_cells_form">
+        <div  class="weui_cell">
+        	<div class="weui_cell_hd"><i class="i_start"></i></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input type="hidden" id="hidden_fplace">
+                <input class="weui_input"  id = "from_place" name="from_place" placeholder="请输入出发地">
+            </div>
+            <!-- <div class="weui_cell_hd"><i class="i_clear ml_5"></i></div> -->
+            <div id="addCrossBtn" class="weui_cell_hd ml_10"><i class="i_add"></i></div>
+        </div>
+        <div id="toPlaceCell" class="weui_cell">
+            <div class="weui_cell_hd"><i class="i_end"></i></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input type="hidden" id="hidden_tplace"  >
+                <input class="weui_input" id = "to_place" name="to_place" placeholder="请输入目的地">
+            </div>
+            <!-- <div class="weui_cell_hd"><i class="i_clear"></i></div> -->
+        </div>
+    </div>
+
+    <!--类型时间-->
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell weui_cell_select weui_select_after">
+            <div class="weui_cell_hd">
+                <label for="" class="weui_label">包车类型</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <select class="weui_select" name="select2" id="charter_type">
+					<!--单程0，往返1，包天2-->
+                    <option value="0">单程</option>
+                    <option value="1">往返</option>
+                    <option value="2">包天</option>
+                </select>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label for="" class="weui_label">去程时间</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="datetime-local" name="start_time" id="start_time" value="" placeholder="请选择出发时间">
+            </div>
+        </div>
+        <div class="weui_cell" id="back_show" style="display: none">
+            <div class="weui_cell_hd"><label for="" class="weui_label">返程时间</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="datetime-local" name="back_time" id="back_time"  value="" placeholder="请选择返程">
+            </div>
+        </div>
+    </div>
+
+    <!--人数车辆-->
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">用车人数</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="number" pattern="[0-9]*" name="person_num" id="person_num" placeholder="请输入人数">
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">车辆数</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="number" pattern="[0-9]*" name="bus_num" id="bus_num" placeholder="请输入车辆数">
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">协商价格</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="number" pattern="[0-9]*" name="neg_price" id="neg_price" placeholder="请输入协商价格">
+            </div>
+        </div>
+    </div>
+<!--    联系人-->
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">联系人</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" id="contact_name" name="contact_name" placeholder="请输入联系人姓名">
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">联系方式</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="number" pattern="[0-9]*" name="contact_phone" id="contact_phone" placeholder="请输入联系号码">
+            </div>
+        </div>
+    </div>
+
+    <!--其他要求-->
+    <div class="weui_cells weui_cells_checkbox">
+        <label class="weui_cell weui_check_label" for="eat" id="hide_eat">
+            <div class="weui_cell_hd">
+                <input type="checkbox" class="weui_check" name="checkbox1" id="eat" >
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>客户提供司机餐饮(如果不包，报价约贵70元/天)</p>
+            </div>
+        </label>
+        <label class="weui_cell weui_check_label" for="live" id="hide_live">
+            <div class="weui_cell_hd">
+                <input type="checkbox" name="checkbox1" class="weui_check" id="live">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>客户提供司机住宿(如果不包，报价约贵200元/天)</p>
+            </div>
+        </label>
+        <label class="weui_cell weui_check_label" for="roadfee" id="hide_sell">
+            <div class="weui_cell_hd">
+                <input type="checkbox" name="checkbox1" class="weui_check" id="roadfee">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>是否支付路桥费用</p>
+            </div>
+        </label>
+        <label class="weui_cell weui_check_label" for="prepayment">
+            <div class="weui_cell_hd">
+                <input type="checkbox" name="money" class="weui_check" id="prepayment">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>是否需要预付定金</p>
+            </div>
+
+        </label>
+        <label class="weui_cell weui_check_label" for="invoice">
+            <div class="weui_cell_hd">
+                <input type="checkbox" name="invoice" class="weui_check" id="invoice">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>是否需要发票</p>
+            </div>
+
+        </label>
+        <div class="weui_cells weui_cells_form" style="display: none" id="invoice_show">
+            <div class="weui_cell"><label class="weui_label">发票抬头</label></div>
+            <div class="weui_cell weui_cell_primary">
+                <input class="weui_input" type="text" id="invoice_title" placeholder="请输入发票抬头">
+            </div>
+        </div>
+    </div>
+<!--    0001：包司机餐饮;0002：包司机住宿;0003：是否需要发票-->
+    <input type="hidden" id="charter_type_value" value="0">
+    <input type="hidden" id="invoice_title2" value="0">
+    <input type="hidden" id="is_eat">
+    <input type="hidden" id="is_live">
+    <input type="hidden" id="is_invoice">
+    <input type="hidden" id="is_roadfee">
+    <input type="hidden" id="is_prepayment" value="0">
+    <!--    联系人-->
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell"><label class="weui_label">备注</label></div>
+
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <textarea class="weui_textarea" placeholder="备注信息" id="user_remark" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+    <a href="javascript:" onclick="submit_ti()" class="weui_btn weui_btn_warn">提交</a>
+    <!-- <div class="tips">快捷下单，拨打包车热线：<a href="tel:4008-5200084" class="tel_a"></a></div> -->
+</div>
+<script src="/public/web/js/zepto.min_43dde47.js"></script>
+<script type="text/javascript" src="/public/web/common/js/lib/mod.js"></script>
+<script type="text/javascript" src="/public/web/pkg/jidiao/make_order.html_aio.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=b2tdmZtPCKfwW8iwn5svaT03"></script>
+<script type="text/javascript">
+    require('common/components/jidiao/make_order');
+</script>
+<script>
+    var submit_ti = function(){
+        var from_place = $('#from_place').val();
+        var to_place = $('#to_place').val();
+        if(!from_place){
+            alert('出发地不能为空');
+            return;
+        }
+        var cplace1 = '';
+        var cplace2 = '';
+        var cplace3 = '';
+        var hidden_cplace1 = '';
+        var hidden_cplace2 = '';
+        var hidden_cplace3 = '';
+        var cplace1len = $('.weui_cell_bd').find('#cplace1');
+        cplace1len = cplace1len.length;
+        if(cplace1len == 1){
+            cplace1 = $('#cplace1').val();
+            hidden_cplace1 = $('#hidden_cplace1').val();
+            if(!cplace1){
+                alert('途经点不能为空');
+                return; 
+            }
+        }
+
+        var cplace2len = $('.weui_cell_bd').find('#cplace2');
+        cplace2len = cplace2len.length;
+        if(cplace2len == 1){
+            cplace2 = $('#cplace2').val();
+            hidden_cplace2 = $('#hidden_cplace2').val();
+            if(!cplace2){
+                alert('途经点不能为空');
+                return;
+            }
+        }
+        var cplace3len = $('.weui_cell_bd').find('#cplace3');
+        cplace3len = cplace3len.length;
+        if(cplace3len == 1){
+            cplace3 = $('#cplace3').val();
+            hidden_cplace3 = $('#hidden_cplace3').val();
+            if(!cplace3){
+                alert('途经点不能为空');
+                return;
+            }
+        }
+        var start_time = $('#start_time').val();
+        var back_time = $('#back_time').val();
+        var person_num = $('#person_num').val();
+        var bus_num = $('#bus_num').val();
+        var contact_name = $('#contact_name').val();
+        var contact_phone = $('#contact_phone').val();
+        var added_rule = $('#added_rule').val();
+        var charter_type =  $("#charter_type_value").val();
+        var user_remark =  $("#user_remark").val();//备注
+        var invoice_title =  $("#invoice_title").val();//发票抬头
+        var neg_price =  $("#neg_price").val();//协商价格
+
+
+        if(!to_place){
+            alert('目的地不能为空！');
+            return;
+        }
+        if(!start_time){
+            alert('出发时间不能为空！');
+            return;
+        }
+        if(!person_num){
+            alert('用车人数不能为空！');
+            return;
+        }
+        if(!contact_name){
+            alert('联系人不能为空！');
+            return;
+        }
+        if(!contact_phone){
+            alert('联系方式能为空！');
+            return;
+        }
+        if (!check_phone(contact_phone)) {
+            alert('请输入正确的手机号码');
+            return false;
+        }
+        if(!contact_name){
+            alert('联系人不能为空！');
+            return;
+        }
+        if(!bus_num){
+            alert('车辆数不能为空！');
+            return;
+        }
+        if(bus_num > person_num){
+            alert('车辆数不能大于乘车人数');
+            return;
+        }
+        var is_invoice = $('#is_invoice').val();
+        var is_eat = $('#is_eat').val();
+        var is_live = $('#is_live').val();
+        var is_roadfee = $('#is_roadfee').val();
+        var is_prepayment = $('#is_prepayment').val();
+        var added_rule = '';
+        var hidden_fplace = $.trim($("#hidden_fplace").val());
+        var hidden_tplace = $.trim($("#hidden_tplace").val());
+        if(is_eat){
+           is_eat = is_eat + ',';
+        }
+        if(is_live){
+            is_live = is_live + ',';
+        }
+        if(is_invoice){
+            is_invoice = is_invoice + ',';
+        }
+        if(is_roadfee){
+            is_roadfee = is_roadfee + ',';
+        }
+        if(charter_type != 0){
+            if(back_time < start_time){
+                alert('返程时间不能低于出发时间');
+                return;
+            }
+            if(!back_time){
+                alert('返程时间不能为空！');
+                return;
+            }
+        }
+        added_rule = is_eat +   is_live +  is_invoice + is_roadfee;//附加规则
+        var invoice_need = 0;
+        if(is_invoice && !invoice_title){
+            alert('发票抬头不能为空！');
+            return;
+        }
+        if(is_invoice){
+            invoice_need = 1;
+        }
+        if(!neg_price){
+            alert('协商价格不能为空！');
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/add_order",
+            data: {
+                from_place : from_place,
+                to_place : to_place,
+                cplace1 : cplace1,
+                hidden_cplace1 : hidden_cplace1,
+                cplace2 : cplace2,
+                hidden_cplace2 : hidden_cplace2,
+                cplace3 : cplace3,
+                hidden_cplace3 : hidden_cplace3,
+                start_time : start_time,
+                back_time : back_time,
+                person_num : person_num,
+                bus_num : bus_num,
+                contact_name : contact_name,
+                contact_phone : contact_phone,
+                added_rule : added_rule,
+                charter_type : charter_type,
+                user_remark : user_remark,
+                invoice_title : invoice_title,
+                invoice_need : invoice_need,
+                hidden_fplace : hidden_fplace,
+                hidden_tplace : hidden_tplace,
+                is_prepayment : is_prepayment,
+                price : neg_price,
+            },
+            dataType: "json",
+            success: function(json){
+                var data = json.data;
+                if(json.result == '0000'){
+                    alert('录单成功');
+                    window.location = '/public/web/jidiao/detail.html?order_id='+data.order_id;
+                }else if(json.result == '0004') {
+                    alert('暂时只支持在微信登录');
+                }else if(json.result == '0005'){
+                    window.location = '/admin/get_operator_openid';
+                }else{
+                    alert(json.info);
+                }
+            },
+            error: function(){
+                alert("加载失败");
+            }
+        });
+    }
+
+    $(function () {
+        $.ajax({
+            type: "POST",
+            url: "/admin/motorcade_info",
+            data: {motorcade_id:1,actual_name:'农成车队',u_phone:'15101226681'},
+            dataType: "json",
+            success: function(json){
+                var data = json.data;
+                if(json.result == '0000'){
+                    $("#chedui_name").text(data.motorcade_name);
+                    var hotline = 'tel:'+data.hotline;
+                    $('.tel_a').attr('href', hotline);
+                    $('.tel_a').text(data.hotline);
+                }else if(json.result == '0004') {
+                    alert('暂时只支持在微信登录');
+                }else if(json.result == '0005'){
+                    window.location = '/admin/get_operator_openid';
+                }else{
+                    alert(json.info);
+                }
+            },
+            error: function(){
+                alert("加载失败");
+            }
+        });
+    });
+    /**
+     * [检查电话号码]
+     * @param  {[type]} number [号码]
+     * @return {[boolean]}     [是否合格]
+     */
+    function check_phone(number){
+        var pattern = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        return pattern.test(number) ? true : false;
+    }
+
+</script>
+</body>
+</html>

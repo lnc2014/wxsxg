@@ -1,0 +1,256 @@
+* {
+  margin: 0;
+}
+
+body {
+  line-height: initial;
+  background: #f1f1f1;
+  overflow-x: hidden;
+}
+
+body .container {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.f_red {
+  color: #ff4a39;
+}
+
+.f_price_red {
+  color: #ff4a39;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.mt_15 {
+  margin-top: 15px;
+}
+
+.dpage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.weui_navbar_item.weui_bar_item_on {
+  position: relative;
+  color: #ff4a39;
+  background-color: #fff;
+  font-size: 1rem;
+}
+
+.weui_navbar_item:after {
+  display: none;
+}
+
+.weui_navbar_item.weui_bar_item_on:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #ff4a39;
+}
+
+.weui_btn_warn {
+  background-color: #ff4a39;
+}
+
+.dd_btn {
+  color: #fff;
+  background-color: #ff4a39;
+  border-radius: 3px;
+  padding: 15px 0;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.tel_a {
+  text-decoration: underline;
+}
+
+.i_on, .i_off, .i_clock, .i_to, .i_tdcode, .i_start, .i_end, .i_cross, .i_add, .i_del, .i_clear {
+  display: inline-block;
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+  margin-right: 15px;
+}
+
+.i_start, .i_end, .i_cross, .i_clear, .i_add, .i_del {
+  vertical-align: -2px;
+  margin-right: 15px;
+}
+
+.i_add, .i_del {
+  margin-right: 0;
+}
+
+.i_clear {
+  display: none;
+}
+
+.i_on {background-repeat: no-repeat;}
+
+.i_off {background-repeat: no-repeat;}
+
+.i_clock {background-repeat: no-repeat;}
+
+.i_start {background-repeat: no-repeat;}
+
+.i_cross {background-repeat: no-repeat;}
+
+.i_end {background-repeat: no-repeat;}
+
+.i_add {background-repeat: no-repeat;}
+
+.i_del {background-repeat: no-repeat;}
+
+.i_clear {background-repeat: no-repeat;}
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size: 13.5px;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 414px) {
+  html {
+    font-size: 15.5px;
+  }
+}
+
+.tk_wrap {
+  color: #3f3f4d;
+  display: block;
+  background: #fff;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  margin-top: 15px;
+  padding: 5px 10px;
+}
+
+.tk_it {
+  margin: 15px 0;
+  display: box;
+  display: -webkit-box;
+  display: -moz-box;
+  -moz-box-align: center;
+  -webkit-box-align: center;
+  -o-box-align: center;
+  box-align: center;
+}
+
+.tk_cell_primary {
+  display: block;
+  -moz-box-flex: 1;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+}
+
+.tk_c_time {
+  margin: 10px 0;
+  color: #999999;
+}
+
+.val_a_rvise {
+  vertical-align: 1px;
+}
+
+.tk_it_title {
+  display: inline-block;
+  width: 7.5rem;
+  color: #999;
+}
+
+.tk_ipt {
+  border: none;
+  font-size: 1rem;
+}
+
+.weui_cells_checkbox {
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.commit_btn {
+  display: block;
+  width: 88%;
+  margin: 15px auto;
+}
+
+.head_img > img {
+  width: 100%;
+}
+
+.tips {
+  color: #999999;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.tips > a {
+  color: #3f3f4d;
+}
+
+.success_bd {
+  background-color: #ff4a39;
+  text-align: center;
+}
+
+.success_title {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.tdcode_cantainer {
+  position: relative;
+  padding: 25px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 3px;
+  color: #999999;
+  font-size: 1.2rem;
+  word-break: break-all;
+}
+
+.tdcode_cantainer > p {
+  margin: 10px 0;
+}
+
+.tdcode_cantainer:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background-color: #ff4a39;
+  border-radius: 100%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+}
+
+.tdcodeimg {
+  width: 100%;
+}
+
+.i_bingo_w {display: inline-block;
+  width: 30px;
+  height: 30px;
+  
+  margin-top: 35px;background-repeat: no-repeat;}
+.i_bingo_w{background-position:0px 0px}.i_on{background-position:-35px 0px}.i_off{background-position:0px -35px}.i_clock{background-position:-20px -35px}.i_start{background-position:-55px 0px}.i_cross{background-position:-55px -20px}.i_end{background-position:0px -55px}.i_add{background-position:-20px -55px}.i_del{background-position:-40px -55px}.i_clear{background-position:-75px 0px}.i_bingo_w,.i_on,.i_off,.i_clock,.i_start,.i_cross,.i_end,.i_add,.i_del,.i_clear{background-size: 95px 70px;background-image: url(/public/web/common/components/jidiao/order_0.5_z.png)}

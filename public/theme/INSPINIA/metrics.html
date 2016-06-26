@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | 后台管理系统</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+
+
+
+    <div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                        <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">齐天大圣</strong>
+                             </span> <span class="text-muted text-xs block">艺术总监 <b class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="profile.html">个人简介</a></li>
+                                <li><a href="contacts.html">通讯录</a></li>
+                                <li><a href="mailbox.html">邮箱</a></li>
+                                <li class="divider"></li>
+                                <li><a href="login.html">退出登录</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            菜单
+                        </div>
+                    </li>
+                    <li>
+                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">控制面板</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="index.html">控制面板 v.1</a></li>
+                            <li><a href="dashboard_2.html">控制面板 v.2</a></li>
+                            <li><a href="dashboard_3.html">控制面板 v.3</a></li>
+                            <li><a href="dashboard_4_1.html">控制面板 v.4</a></li>
+                            <li><a href="dashboard_5.html">控制面板 v.5 <span class="label label-primary pull-right">最新</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">布局</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">图表</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="graph_flot.html">Flot Charts图表</a></li>
+                            <li><a href="graph_morris.html">Morris.js Charts图表</a></li>
+                            <li><a href="graph_rickshaw.html">Rickshaw Charts图表</a></li>
+                            <li><a href="graph_chartjs.html">Chart.js图表</a></li>
+                            <li><a href="graph_chartist.html">Chartist图表</a></li>
+                            <li><a href="graph_peity.html">Peity Charts图表</a></li>
+                            <li><a href="graph_sparkline.html">Sparkline Charts图表</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">邮箱 </span><span class="label label-warning pull-right">16/24</span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="mailbox.html">收件箱</a></li>
+                            <li><a href="mail_detail.html">查看邮件</a></li>
+                            <li><a href="mail_compose.html">撰写邮件</a></li>
+                            <li><a href="email_template.html">邮件模板</a></li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="metrics.html"><i class="fa fa-pie-chart"></i> <span class="nav-label">度量</span>  </a>
+                    </li>
+                    <li>
+                        <a href="widgets.html"><i class="fa fa-flask"></i> <span class="nav-label">窗口小部件</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">表单</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="form_basic.html">基础表单</a></li>
+                            <li><a href="form_advanced.html">高级插件</a></li>
+                            <li><a href="form_wizard.html">向导</a></li>
+                            <li><a href="form_file_upload.html">文件上传</a></li>
+                            <li><a href="form_editors.html">文本编辑器</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">应用程序视图</span>  <span class="pull-right label label-primary">特殊</span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="contacts.html">联系人</a></li>
+                            <li><a href="profile.html">简介</a></li>
+                            <li><a href="profile_2.html">简介 v.2</a></li>
+                            <li><a href="contacts_2.html">联系人 v.2</a></li>
+                            <li><a href="projects.html">项目</a></li>
+                            <li><a href="project_detail.html">项目详细</a></li>
+                            <li><a href="teams_board.html">团队面板</a></li>
+                            <li><a href="social_feed.html">留言评价</a></li>
+                            <li><a href="clients.html">客户管理</a></li>
+                            <li><a href="full_height.html">观点列表</a></li>
+                            <li><a href="vote_list.html">投票名单</a></li>
+                            <li><a href="file_manager.html">文件管理</a></li>
+                            <li><a href="calendar.html">日程管理</a></li>
+                            <li><a href="issue_tracker.html">问题记录</a></li>
+                            <li><a href="blog.html">博客</a></li>
+                            <li><a href="article.html">文章管理</a></li>
+                            <li><a href="faq.html">常见问题解答</a></li>
+                            <li><a href="timeline.html">时间表</a></li>
+                            <li><a href="pin_board.html">公告板</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">其他页面</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="search_results.html">搜索结果</a></li>
+                            <li><a href="lockscreen.html">锁屏</a></li>
+                            <li><a href="invoice.html">发票联</a></li>
+                            <li><a href="login.html">登录页面</a></li>
+                            <li><a href="login_two_columns.html">登录页面 v.2</a></li>
+                            <li><a href="forgot_password.html">忘记密码</a></li>
+                            <li><a href="register.html">注册页面</a></li>
+                            <li><a href="404.html">404 页面</a></li>
+                            <li><a href="500.html">500 页面</a></li>
+                            <li><a href="empty_page.html">空页面</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">特别版</span><span class="label label-info pull-right">最新</span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="toastr_notifications.html">通知</a></li>
+                            <li><a href="nestable_list.html">嵌套列表</a></li>
+                            <li><a href="agile_board.html">拖拽控件</a></li>
+                            <li><a href="timeline_2.html">时间轴 v.2</a></li>
+                            <li><a href="diff.html">文本微调</a></li>
+                            <li><a href="sweetalert.html">弹出窗口</a></li>
+                            <li><a href="idle_timer.html">空闲定时器</a></li>
+                            <li><a href="spinners.html">页面加载元素</a></li>
+                            <li><a href="tinycon.html">活的图标</a></li>
+                            <li><a href="google_maps.html">Google地图</a></li>
+                            <li><a href="code_editor.html">代码编辑器</a></li>
+                            <li><a href="modal_window.html">模态窗口</a></li>
+                            <li><a href="forum_main.html">主题管理</a></li>
+                            <li><a href="validation.html">表单验证</a></li>
+                            <li><a href="tree_view.html">树新菜单</a></li>
+                            <li><a href="chat_view.html">聊天列表</a></li>
+                            <li><a href="masonry.html">瀑布流</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">界面元素</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="typography.html">排版</a></li>
+                            <li><a href="icons.html">图标</a></li>
+                            <li><a href="draggable_panels.html">拖拽面板</a></li>
+                            <li><a href="buttons.html">按钮</a></li>
+                            <li><a href="video.html">视频</a></li>
+                            <li><a href="tabs_panels.html">面板</a></li>
+                            <li><a href="tabs.html">切换</a></li>
+                            <li><a href="notifications.html">通知提醒</a></li>
+                            <li><a href="badges_labels.html">徽章，标签，进展</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="grid_options.html"><i class="fa fa-laptop"></i> <span class="nav-label">网格选项</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-table"></i> <span class="nav-label">列表</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="table_basic.html">静态列表</a></li>
+                            <li><a href="table_data_tables.html">数据列表</a></li>
+                            <li><a href="table_foo_table.html">富列表</a></li>
+                            <li><a href="jq_grid.html">jqGrid列表</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">电子商务</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="ecommerce_products_grid.html">产品列表V1</a></li>
+                            <li><a href="ecommerce_product_list.html">产品列表V2</a></li>
+                            <li><a href="ecommerce_product.html">产品修改</a></li>
+                            <li><a href="ecommerce_product_detail.html">产品详细</a></li>
+                            <li><a href="ecommerce-orders.html">订单管理</a></li>
+                            <li><a href="ecommerce_payments.html">信用卡管理</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">图库</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="basic_gallery.html">Lightbox图库</a></li>
+                            <li><a href="slick_carousel.html">Slick图库</a></li>
+                            <li><a href="carousel.html">Bootstrap Carousel</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">多级菜单 </span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li>
+                                <a href="#">三级菜单<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">三级元素</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">三级元素</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">三级元素</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li><a href="#">二级元素</a></li>
+                            <li>
+                                <a href="#">二级元素</a></li>
+                            <li>
+                                <a href="#">二级元素</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="css_animation.html"><i class="fa fa-magic"></i> <span class="nav-label">CSS 动画 </span><span class="label label-info pull-right">62</span></a>
+                    </li>
+            </ul>
+
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="输入搜索关键词..." class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">欢迎使用 INSPINIA+ 后台管理系统.</span>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/a7.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <small class="pull-right">46小时前</small>
+                                    <strong>苏东辉</strong> 服务客户 <strong>李总</strong>. <br>
+                                    <small class="text-muted">三天前 上午 7:58 - 10.06.2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/a4.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right text-navy">5小时前</small>
+                                    <strong>刘明城</strong> 服务客户 <strong>吴总</strong>. <br>
+                                    <small class="text-muted">昨天 凌晨 1:21 - 11.06.2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/profile.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right">23小时前</small>
+                                    <strong>袁建</strong> 服务客户 <strong>陶总</strong>. <br>
+                                    <small class="text-muted">两天前 下午 2:30 - 11.06.2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="mailbox.html">
+                                    <i class="fa fa-envelope"></i> <strong>所有信息</strong>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="mailbox.html">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> 你有 16 条未读消息
+                                    <span class="pull-right text-muted small">4 分钟前</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="profile.html">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 个新用户
+                                    <span class="pull-right text-muted small">12 分钟前</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="grid_options.html">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> 上次登录时间
+                                    <span class="pull-right text-muted small">4 小时前</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="notifications.html">
+                                    <strong>查看所有提醒</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="login.html">
+                        <i class="fa fa-sign-out"></i> 退出登录
+                    </a>
+                </li>
+                <li>
+                    <a class="right-sidebar-toggle">
+                        <i class="fa fa-tasks"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5 class="m-b-md">Server status Q12</h5>
+                                <h2 class="text-navy">
+                                    <i class="fa fa-play fa-rotate-270"></i> Up
+                                </h2>
+                                <small>Last down 42 days ago</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content ">
+                                <h5 class="m-b-md">Server status Q13</h5>
+                                <h2 class="text-navy">
+                                    <i class="fa fa-play fa-rotate-270"></i> Up
+                                </h2>
+                                <small>Last down 42 days ago</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5 class="m-b-md">Server status Q42</h5>
+                                <h2 class="text-danger">
+                                    <i class="fa fa-play fa-rotate-90"></i> Down
+                                </h2>
+                                <small>Server down since 4 days</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5 class="m-b-md">Server status Q43</h5>
+                                <h2 class="text-danger">
+                                    <i class="fa fa-play fa-rotate-90"></i> Down
+                                </h2>
+                                <small>Server down since 4:32 pm.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Visits in last 24h</h5>
+                                <h2>198 009</h2>
+                                <div id="sparkline1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Visits week</h5>
+                                <h2>65 000</h2>
+                                <div id="sparkline2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Last month</h5>
+                                <h2>680 900</h2>
+                                <div id="sparkline3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Avarage time</h5>
+                                <h2>00:06:40</h2>
+                                <div id="sparkline4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Usage</h5>
+                                <h2>65%</h2>
+                                <div class="progress progress-mini">
+                                    <div style="width: 68%;" class="progress-bar"></div>
+                                </div>
+
+                                <div class="m-t-sm small">Server down since 4:32 pm.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Usage</h5>
+                                <h2>50%</h2>
+                                <div class="progress progress-mini">
+                                    <div style="width: 78%;" class="progress-bar"></div>
+                                </div>
+
+                                <div class="m-t-sm small">Server down since 4:32 pm.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Usage</h5>
+                                <h2>14%</h2>
+                                <div class="progress progress-mini">
+                                    <div style="width: 38%;" class="progress-bar progress-bar-danger"></div>
+                                </div>
+
+                                <div class="m-t-sm small">Server down since 4:32 pm.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Usage</h5>
+                                <h2>20%</h2>
+                                <div class="progress progress-mini">
+                                    <div style="width: 28%;" class="progress-bar progress-bar-danger"></div>
+                                </div>
+
+                                <div class="m-t-sm small">Server down since 4:32 pm.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Percentage distribution</h5>
+                                <h2>42/20</h2>
+                                <div class="text-center">
+                                    <div id="sparkline5"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Percentage division</h5>
+                                <h2>100/54</h2>
+                                <div class="text-center">
+                                    <div id="sparkline6"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Percentage distribution</h5>
+                                <h2>685/211</h2>
+                                <div class="text-center">
+                                    <div id="sparkline7"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Percentage division</h5>
+                                <h2>240/32</h2>
+                                <div class="text-center">
+                                    <div id="sparkline8"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Income</h5>
+                                <h1 class="no-margins">886,200</h1>
+                                <div class="stat-percent font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
+                                <small>Total income</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Income last month</h5>
+                                <h1 class="no-margins">1 738,200</h1>
+                                <div class="stat-percent font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
+                                <small>Total income</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Income last day</h5>
+                                <h1 class="no-margins">-200,100</h1>
+                                <div class="stat-percent font-bold text-danger">12% <i class="fa fa-level-down"></i></div>
+                                <small>Total income</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Income all</h5>
+                                <h1 class="no-margins">54,200</h1>
+                                <div class="stat-percent font-bold text-danger">24% <i class="fa fa-level-down"></i></div>
+                                <small>Total income</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>All new alerts</h5>
+                                <table class="table table-stripped small m-t-md">
+                                    <tbody>
+                                    <tr>
+                                        <td class="no-borders">
+                                            <i class="fa fa-circle text-navy"></i>
+                                        </td>
+                                        <td  class="no-borders">
+                                            Example element 1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-circle text-navy"></i>
+                                        </td>
+                                        <td>
+                                            Example element 2
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-circle text-navy"></i>
+                                        </td>
+                                        <td>
+                                            Example element 3
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Alerts</h5>
+                                <table class="table table-stripped small m-t-md">
+                                    <tbody>
+                                    <tr>
+                                        <td class="no-borders">
+                                            <i class="fa fa-circle text-navy"></i>
+                                        </td>
+                                        <td  class="no-borders">
+                                            Example element 1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-circle text-navy"></i>
+                                        </td>
+                                        <td>
+                                            Example element 2
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-circle text-navy"></i>
+                                        </td>
+                                        <td>
+                                            Example element 3
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>All messages</h5>
+                                <table class="table table-stripped small m-t-md">
+                                    <tbody>
+                                    <tr>
+                                        <td class="no-borders">
+                                            <i class="fa fa-circle text-danger"></i>
+                                        </td>
+                                        <td  class="no-borders">
+                                            Example element 1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-circle text-danger"></i>
+                                        </td>
+                                        <td>
+                                            Example element 2
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-circle text-danger"></i>
+                                        </td>
+                                        <td>
+                                            Example element 3
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Last notification</h5>
+                                <table class="table table-stripped small m-t-md">
+                                    <tbody>
+                                    <tr>
+                                        <td class="no-borders">
+                                            <i class="fa fa-circle text-danger"></i>
+                                        </td>
+                                        <td  class="no-borders">
+                                            Example element 1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-circle text-danger"></i>
+                                        </td>
+                                        <td>
+                                            Example element 2
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-circle text-danger"></i>
+                                        </td>
+                                        <td>
+                                            Example element 3
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2015
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Sparkline -->
+    <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Peity -->
+    <script src="js/plugins/peity/jquery.peity.min.js"></script>
+    
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            var sparklineCharts = function(){
+                 $("#sparkline1").sparkline([34, 43, 43, 35, 44, 32, 44, 52], {
+                     type: 'line',
+                     width: '100%',
+                     height: '60',
+                     lineColor: '#1ab394',
+                     fillColor: "#ffffff"
+                 });
+
+                 $("#sparkline2").sparkline([24, 43, 43, 55, 44, 62, 44, 72], {
+                     type: 'line',
+                     width: '100%',
+                     height: '60',
+                     lineColor: '#1ab394',
+                     fillColor: "#ffffff"
+                 });
+
+                 $("#sparkline3").sparkline([74, 43, 23, 55, 54, 32, 24, 12], {
+                     type: 'line',
+                     width: '100%',
+                     height: '60',
+                     lineColor: '#ed5565',
+                     fillColor: "#ffffff"
+                 });
+
+                 $("#sparkline4").sparkline([24, 43, 33, 55, 64, 72, 44, 22], {
+                     type: 'line',
+                     width: '100%',
+                     height: '60',
+                     lineColor: '#ed5565',
+                     fillColor: "#ffffff"
+                 });
+
+                 $("#sparkline5").sparkline([1, 4], {
+                     type: 'pie',
+                     height: '140',
+                     sliceColors: ['#1ab394', '#F5F5F5']
+                 });
+
+                 $("#sparkline6").sparkline([5, 3], {
+                     type: 'pie',
+                     height: '140',
+                     sliceColors: ['#1ab394', '#F5F5F5']
+                 });
+
+                 $("#sparkline7").sparkline([2, 2], {
+                     type: 'pie',
+                     height: '140',
+                     sliceColors: ['#ed5565', '#F5F5F5']
+                 });
+
+                 $("#sparkline8").sparkline([2, 3], {
+                     type: 'pie',
+                     height: '140',
+                     sliceColors: ['#ed5565', '#F5F5F5']
+                 });
+            };
+
+            var sparkResize;
+
+            $(window).resize(function(e) {
+                clearTimeout(sparkResize);
+                sparkResize = setTimeout(sparklineCharts, 500);
+            });
+
+            sparklineCharts();
+
+
+        });
+    </script>
+</body>
+</html>
