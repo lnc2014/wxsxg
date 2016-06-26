@@ -171,6 +171,53 @@ class Sxg extends BaseController{
     }
 
     /**
+     * 支付订单详情，取消订单详情
+     */
+    public function pay_order_detail($order_id){
+        if(empty($order_id)){
+            exit("<script>alert('非法请求!');location.href='/index.php/sxg/my_order_list';</script>");
+        }
+        if(!$this->check_user()){
+            echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
+            exit();
+        };
+        $user_id  = $_SESSION['user_id'];
+        $this->load->model("sxg_order");
+        $this->load->model("sxg_address");
+
+        $order = $this->sxg_order->find_order_by_id($order_id);
+
+        $repair_option = explode(',', $order['repair_option']);
+        $repair_info = '';
+        foreach($repair_option as $value){
+            if(is_numeric(strpos($value,'0001'))){
+                $repair_info = $repair_info.';'.'加粉';
+            }elseif(is_numeric(strpos($value,'0002'))){
+                $repair_info = $repair_info.';'.'打印质量差';
+            }elseif(is_numeric(strpos($value,'0003'))){
+                $repair_info = $repair_info.';'.'不能开机';
+            }elseif(is_numeric(strpos($value,'0004'))){
+                $repair_info = $repair_info.';'.'卡纸';
+            }
+        }
+        $repair_info = trim($repair_info, ';');
+        $order['repair_info'] = $repair_info.';'.$order['repair_problem'];
+
+        $order['status'] = $this->status_info($order['status']);
+        $order['status'] = $this->status_info($order['status']);
+        $address = $this->sxg_address->find_address_by_condition(array(
+            'address_id' => $order['address_id']
+        ));
+
+        $title = '订单详情';
+        $this->load->view('pay_order_detail',array(
+            'title' => $title,
+            'order' => $order,
+            'address' => $address,
+        ));
+
+    }
+    /**
      * 订单的修改
      */
     public function update_order(){
