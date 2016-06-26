@@ -122,11 +122,23 @@ class Sxg extends BaseController{
         if(empty($order_id)){
             exit("<script>alert('非法请求!');location.href='/index.php/sxg/index';</script>");
         }
+        if(!$this->check_user()){
+            echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
+            exit();
+        };
+        $user_id  = $_SESSION['user_id'];
         $this->load->model("sxg_order");
+        $this->load->model("sxg_address");
         $order = $this->sxg_order->find_order_by_id($order_id);
         if(empty($order)){
             exit("<script>alert('订单信息不存在!');location.href='/index.php/sxg/index';</script>");
         }
+        //地址信息
+        $address = $this->sxg_address->find_address_by_condition(array(
+            'user_id' => $user_id,
+            'is_default' => 1
+        ));
+
         $repair_detail['print_band'] = empty($order['print_band'])?'':$order['print_band'];
         $repair_detail['print_model'] = empty($order['print_model'])?'':$order['print_model'];
         $repair_option = explode(',', $order['repair_option']);
@@ -147,7 +159,8 @@ class Sxg extends BaseController{
         $title = "订单填写";
         $this->load->view('order_detail',array(
             'title' => $title,
-            'repair_detail' => $repair_detail
+            'repair_detail' => $repair_detail,
+            'address'   =>  $address
         ));
     }
     public function address(){

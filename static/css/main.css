@@ -166,7 +166,7 @@ input[type='radio']:checked { background: url(../images/radio_checked.png) no-re
 .div_address .contact { color: #a8a8a8; width: 100%; }
 .div_address span.arrow,
 .div_maintenance .main_t .main_r i { position: absolute; right: 1em; top: 1.8em; width: 0.8em; height: 0.8em; border-top: 0.15em solid #ccc; border-right: 0.15em solid #ccc; transform: rotate(45deg); -webkit-transform: rotate(45deg); }
-.div_address .default, .div_address span.arrow, .div_address.no_addr .contact, .div_address.no_addr .address,
+.div_address .default, .div_address span.arrow,
 .div_maintenance .uncertain, .div_maintenance .input_designated, .div_maintenance.designated .select_visit,
 .div_maintenance.designated .main_t .main_r i { display: none; }
 .div_address.no_addr .default, .div_address.no_addr span.arrow { display: block; }
