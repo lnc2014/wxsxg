@@ -32,8 +32,8 @@ $base_img_url = $this->config->item('img_url');
             <div class="contact_info float_left">
                 <div class="contact_name border_bottom"><input type="text" id="input_name" name="contact_name" placeholder="您的姓名"></div>
                 <div class="contact_gender">
-                    <label class="gender1"><input type="radio" name="gender" value='1' id="man" class="test">先生</label>
-                    <label><input type="radio" name="gender" value='0' id="woman" class="test2">女士</label>
+                    <label class="gender1"><input type="radio" name="gender" id="man" class="test">先生</label>
+                    <label><input type="radio" name="gender"id="woman" class="test2">女士</label>
                 </div>
             </div>
         </div>
@@ -145,7 +145,7 @@ $base_img_url = $this->config->item('img_url');
                 dataType: "json",
                 success: function(json){
                     if(json.result == '0000'){
-                        window.location = '/index.php/sxg/address/'+json.data.address_id;
+                        window.location = '/index.php/sxg/address/<?php echo $order_id?>';
                     }else {
                         alert(json.info);
                     }

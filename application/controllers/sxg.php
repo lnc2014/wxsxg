@@ -118,7 +118,7 @@ class Sxg extends BaseController{
     /**
      * 订单详情
      */
-    public function order_detail($order_id = ''){
+    public function order_detail($order_id = '', $address_id = ''){
         if(empty($order_id)){
             exit("<script>alert('非法请求!');location.href='/index.php/sxg/index';</script>");
         }
@@ -133,12 +133,17 @@ class Sxg extends BaseController{
         if(empty($order)){
             exit("<script>alert('订单信息不存在!');location.href='/index.php/sxg/index';</script>");
         }
-        //地址信息
-        $address = $this->sxg_address->find_address_by_condition(array(
-            'user_id' => $user_id,
-            'is_default' => 1
-        ));
-
+        if(empty($address_id)){
+            //地址信息
+            $address = $this->sxg_address->find_address_by_condition(array(
+                'user_id' => $user_id,
+                'is_default' => 1
+            ));
+        }else{
+            $address = $this->sxg_address->find_address_by_condition(array(
+                'address_id' => $address_id
+            ));
+        }
         $repair_detail['print_band'] = empty($order['print_band'])?'':$order['print_band'];
         $repair_detail['print_model'] = empty($order['print_model'])?'':$order['print_model'];
         $repair_option = explode(',', $order['repair_option']);
@@ -200,7 +205,14 @@ class Sxg extends BaseController{
         }
 
     }
-    public function address(){
+
+    /**
+     * 选择地址
+     */
+    public function address($order_id){
+        if(empty($order_id)){
+            exit("<script>alert('非法请求!');location.href='/index.php/sxg/index';</script>");
+        }
         $title = "选择地址";
         if(!$this->check_user()){
             echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
@@ -211,13 +223,14 @@ class Sxg extends BaseController{
         $this->load->view('address',array(
             'title' => $title,
             'address' => $address,
+            'order_id' => $order_id
         ));
     }
-    public function add_address(){
+    public function add_address($order_id = ''){
         $title = "新增地址";
         $this->load->view('add-address',array(
             'title' => $title,
-
+            'order_id' => $order_id
         ));
     }
 

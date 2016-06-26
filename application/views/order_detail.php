@@ -19,13 +19,13 @@ $base_img_url = $this->config->item('img_url');
 <body>
 <div class="container">
     <?php if(empty($address)){?>
-        <div class="div_address no_addr" onclick="location.href='/index.php/sxg/address'">
+        <div class="div_address no_addr" onclick="location.href='/index.php/sxg/address/<?php echo $order_id?>'">
             <div class="default">请填写地址</div>
             <span class="arrow"></span>
             <input type="hidden" value="<?= $address['address_id'] ?>" id="address">
         </div>
         <?php }else{ ?>
-        <div class="div_address no_addr">
+        <div class="div_address no_addr" onclick="location.href='/index.php/sxg/address/<?php echo $order_id?>'">
             <div class="contact"><?= $address['name'] ?><?php if($address['sex']==1){echo '先生';}else{echo '女士';}?> &nbsp;&nbsp; <?= $address['mobile'] ?></div>
             <div class="address color_base">地址：<?php  echo $address['province'].$address['city'].$address['area'].$address['street']?></div>
             <span class="arrow"></span>
