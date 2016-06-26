@@ -315,4 +315,70 @@ class Sxg extends BaseController{
     public function test(){
         $this->load->view('test');
     }
+
+    /**
+     * 我的订单列表
+     */
+    public function my_order_list($status = 0){
+        if(!$this->check_user()){
+            echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
+            exit();
+        };
+        $user_id = $_SESSION['user_id'];
+
+        $this->load->model("sxg_order");
+        $order = $this->sxg_order->find_all_order_by_user_id($user_id, $status);
+
+        $order_list = array();
+        foreach($order as $k => $val){
+            $order_list[$k]['status'] = $this->status_info($val['status']);
+            $order_list[$k]['createtime'] = date('Y-m-d H:i:s', $val['createtime']);
+            $order_list[$k]['order_id'] = $val['id'];
+        }
+        $status_info = $this->status_info($status);
+        $title = "我的订单列表";
+        $this->load->view('my_order_list',array(
+            'title' => $title,
+            'order' => $order_list,
+            'status_info' => $status_info,
+        ));
+    }
+
+    /**
+     * 订单状态信息转化
+     * @param $status
+     * 1,待接单2，待上门3,检测中4,调配件5,维修中6,待点评7,已结束8,已取消
+     */
+    private function status_info($status){
+        switch ($status)
+        {
+            case 0:
+                return "全部";
+                break;
+            case 1:
+                return "待接单";
+                break;
+            case 2:
+                return "待上门";
+                break;
+            case 3:
+                return "检测中";
+                break;
+            case 4:
+                return "调配件";
+                break;
+            case 5:
+                return "维修中";
+                break;
+            case 6:
+                return "待点评";
+                break;
+            case 7:
+                return "已结束";
+                break;
+            case 8:
+                return "已取消";
+                break;
+        }
+    }
 }

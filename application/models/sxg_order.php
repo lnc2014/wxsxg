@@ -45,6 +45,25 @@ class sxg_order extends CI_Model{
         return $this->db->update($this->table_name, $data, $where);
     }
 
+    /**
+     * 通过用户ID查找用户的所有的订单
+     * @param $user_id
+     * @return mixed
+     */
+
+    public function find_all_order_by_user_id($user_id, $status = 0){
+//        1,待接单2，待上门3,检测中4,调配件5,维修中6,待点评7,已结束8,已取消
+        if($status != 0){
+            $this->db->where("status", $status);
+        }
+        $this->db->select();
+        $this->db->where("user_id", $user_id);
+        $this->db->from($this->table_name);
+        $this->db->order_by('updatetime', 'DESC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 }
 
 
