@@ -98,7 +98,6 @@ class Sxg extends BaseController{
             exit();
         };
         $post = $this->input->post(NULL, TRUE);
-        var_dump($post);exit;
         $post['repair_pic'] = trim($post['img'], ';');
         unset($post['img']);
         $post['repair_option'] = trim($post['repair_option'],',');
