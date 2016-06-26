@@ -37,5 +37,14 @@ class sxg_order extends CI_Model{
         return $query->row_array();
     }
 
+    /**
+     *  通过条件来修改订单信息
+     *
+     */
+    public function update_order_by_condition($data, $where){
+        return $this->db->update($this->table_name, $data, $where);
+    }
+
 }
+
 

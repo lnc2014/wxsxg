@@ -160,8 +160,45 @@ class Sxg extends BaseController{
         $this->load->view('order_detail',array(
             'title' => $title,
             'repair_detail' => $repair_detail,
-            'address'   =>  $address
+            'address'   =>  $address,
+            'order_id' => $order_id
         ));
+    }
+
+    /**
+     * 订单的修改
+     */
+    public function update_order(){
+        if(!$this->check_user()){
+            echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
+            exit();
+        };
+        $data = $this->input->post();
+        if(empty($data)){
+            echo $this->apiReturn('0003', new stdClass(), '参数不正确！');
+            exit();
+        }
+        $order_id = intval($data['order_id']);
+        if($order_id < 0){
+            echo $this->apiReturn('0003', new stdClass(), '参数不正确！');
+            exit();
+        }
+        unset($data['order_id']);
+
+        $data['visit_time'] = strtotime($data['visit_time']);
+        $data['updatetime'] = time();
+        $this->load->model("sxg_order");
+        $update_order = $this->sxg_order->update_order_by_condition($data,array(
+            'id' => $order_id
+        ));
+        if($update_order){
+            echo $this->apiReturn('0000', new stdClass(), 'success');
+            exit();
+        }else{
+            echo $this->apiReturn('0002', new stdClass(), '内部错误！');
+            exit();
+        }
+
     }
     public function address(){
         $title = "选择地址";
