@@ -89,7 +89,7 @@ $this->load->view('common/header',array('title'=>$title));
         </div>
     </div>
     <div class="align_center">
-        <a href="order_pay.html"><button class="btn btn_xl" type="button">维修结束并支付</button></a>
+        <a href="javascript:;" onclick="jspay()"><button class="btn btn_xl" type="button">维修结束并支付</button></a>
     </div>
 </div>
 <script type="text/javascript" src="/static/js/zepto.min.js"></script>
@@ -108,10 +108,6 @@ $this->load->view('common/header',array('title'=>$title));
 <script type="text/javascript">
 
     function jspay(){
-        if (!order_data.price || !order_data.order_num) {
-            alert('参数错误');
-            return false;
-        }
 
         $.ajax({
             type: "POST",

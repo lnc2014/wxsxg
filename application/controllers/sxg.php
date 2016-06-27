@@ -442,7 +442,9 @@ class Sxg extends BaseController{
     public function get_user_openid(){
         include_once(FCPATH . "public/user-pay/WxOpenIdHelper.php");
         $wxopenidhelper = new WxOpenIdHelper();
-        return $wxopenidhelper->getOpenId();
+        $openid = $wxopenidhelper->getOpenId();
+        $_SESSION['jspayOpenId'] = $openid;
+        return $openid;
     }
     /**
      * 微信支付参数拼接

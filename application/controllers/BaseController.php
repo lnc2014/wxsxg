@@ -14,6 +14,7 @@ class BaseController extends CI_Controller
         parent::__construct();
         $this->load->helper('url');
         $this->check_user();
+        session_start();
     }
 
     /**

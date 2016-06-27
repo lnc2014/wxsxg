@@ -34,11 +34,11 @@ CREATE TABLE `sxg_address` (
   `create_time` int(11) DEFAULT NULL COMMENT '创建时间，时间戳',
   `update_time` int(11) DEFAULT NULL COMMENT '更新时间，时间戳',
   PRIMARY KEY (`address_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sxg_address` */
 
-insert  into `sxg_address`(`address_id`,`user_id`,`name`,`mobile`,`sex`,`province`,`city`,`area`,`street`,`is_default`,`create_time`,`update_time`) values (1,'1','李农成','158899872592',1,'广东省','深圳市','南山区','华侨新村',1,NULL,NULL),(2,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL),(3,'1',NULL,'15899872592',1,'吉林','吉林','昌邑区','环保',1,1466528520,1466528520),(4,'1',NULL,'15899872592',0,'内蒙古','包头','昆都仑区','环保',1,1466528584,1466528584),(5,'1','请求','15101226681',1,'江苏','无锡','崇安区','李农成',1,1466528609,1466528609);
+insert  into `sxg_address`(`address_id`,`user_id`,`name`,`mobile`,`sex`,`province`,`city`,`area`,`street`,`is_default`,`create_time`,`update_time`) values (1,'1','李农成','158899872592',1,'广东省','深圳市','南山区','华侨新村',1,NULL,NULL),(2,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL),(3,'1',NULL,'15899872592',1,'吉林','吉林','昌邑区','环保',1,1466528520,1466528520),(4,'1',NULL,'15899872592',0,'内蒙古','包头','昆都仑区','环保',1,1466528584,1466528584),(5,'1','请求','15101226681',1,'江苏','无锡','崇安区','李农成',1,1466528609,1466528609),(6,'1','李农成','15899872592',0,'江苏','南京','白下区','南山',1,1466565378,1466565378),(7,'1','杨姣','18698725652',0,'天津','和平区','','龙华',1,1466924410,1466924410);
 
 /*Table structure for table `sxg_admin` */
 
@@ -135,16 +135,17 @@ CREATE TABLE `sxg_order` (
   `visit_option` tinyint(4) DEFAULT '1' COMMENT '1为跟维修人员商定，2为指定时间,3为立即上门',
   `visit_time` int(11) DEFAULT NULL COMMENT '指定上门的时间',
   `is_pay` tinyint(4) DEFAULT '0' COMMENT '是不是已经结款，0为未结款，1为结款',
-  `status` tinyint(4) DEFAULT '1' COMMENT '1,待上门2,检测中3,调配件4,维修中5,待点评6,已结束7,已取消',
+  `status` tinyint(4) DEFAULT '1' COMMENT '1,待接单2，待上门3,检测中4,调配件5,维修中6,待点评7,已结束8,已取消',
   `repair_money` decimal(10,2) DEFAULT '0.00' COMMENT '维修费用',
   `createtime` int(11) DEFAULT '0' COMMENT '下单时间',
   `updatetime` int(11) DEFAULT '0' COMMENT '更新时间，订单完成时间',
+  `remark` varchar(500) DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sxg_order` */
 
-insert  into `sxg_order`(`id`,`order_no`,`user_id`,`is_transfer`,`trasfer_repair_user_id`,`print_band`,`print_model`,`repair_option`,`repair_problem`,`repair_pic`,`address_id`,`repair_assign`,`repair_user_id`,`visit_option`,`visit_time`,`is_pay`,`status`,`repair_money`,`createtime`,`updatetime`) values (1,'NO201605011213232','1',0,1,'1','1',NULL,'1',NULL,1,1,1,1,NULL,0,1,'2.00',NULL,NULL),(2,'NO201605011213232','1',0,1,'1','1',NULL,'1',NULL,1,1,1,1,NULL,0,1,'2.00',NULL,NULL),(3,'NO201605011213232','1',0,1,'1','1','0001,0002,0003,0004','1',NULL,1,1,1,1,NULL,1,1,'7.00',NULL,NULL),(5,'SXG2016062117455857117','1',0,NULL,NULL,NULL,'1,1,1,0','',NULL,NULL,1,NULL,1,NULL,0,1,NULL,1466523958,1466523958),(6,'SXG2016062117473575148','1',0,NULL,NULL,NULL,'0001,0002,0003,0004','',NULL,NULL,1,NULL,1,NULL,0,1,NULL,1466524055,1466524055),(7,'SXG2016062117502957916','1',0,0,'','','0001,0002,0003,0004','',NULL,0,1,0,1,NULL,0,1,'0.00',1466524229,1466524229),(8,'SXG2016062117504433950','1',0,0,'','','0001,0002,00004','',NULL,0,1,0,1,NULL,0,1,'0.00',1466524244,1466524244),(9,'SXG2016062117524833477','1',0,0,'222','222','0001,0002,00004','',NULL,0,1,0,1,NULL,0,1,'0.00',1466524368,1466524368),(10,'SXG2016062117535277359','1',0,0,'222','222','0001,0002,00004','',NULL,0,1,0,1,NULL,0,1,'0.00',1466524432,1466524432),(11,'SXG2016062117555823724','1',0,0,'惠普','2003','0001,0002,00004','',NULL,0,1,0,1,NULL,0,1,'0.00',1466524558,1466524558);
+insert  into `sxg_order`(`id`,`order_no`,`user_id`,`is_transfer`,`trasfer_repair_user_id`,`print_band`,`print_model`,`repair_option`,`repair_problem`,`repair_pic`,`address_id`,`repair_assign`,`repair_user_id`,`visit_option`,`visit_time`,`is_pay`,`status`,`repair_money`,`createtime`,`updatetime`,`remark`) values (1,'NO201605011213232','1',0,1,'1','1',NULL,'1',NULL,1,1,1,1,NULL,0,1,'2.00',NULL,NULL,''),(2,'NO201605011213232','1',0,1,'1','1',NULL,'1',NULL,1,1,1,1,NULL,0,1,'2.00',NULL,NULL,''),(3,'NO201605011213232','1',0,1,'1','1','0001,0002,0003,0004','1',NULL,1,1,1,1,NULL,1,8,'7.00',NULL,NULL,''),(5,'SXG2016062117455857117','1',0,NULL,NULL,NULL,'1,1,1,0','',NULL,NULL,1,NULL,1,NULL,0,2,NULL,1466523958,1466523958,''),(6,'SXG2016062117473575148','1',0,NULL,NULL,NULL,'0001,0002,0003,0004','',NULL,NULL,1,NULL,1,NULL,0,3,NULL,1466524055,1466524055,''),(7,'SXG2016062117502957916','1',0,0,'','','0001,0002,0003,0004','',NULL,0,1,0,1,NULL,0,5,'0.00',1466524229,1466524229,''),(8,'SXG2016062117504433950','1',0,0,'','','0001,0002,00004','',NULL,0,1,0,1,NULL,0,4,'0.00',1466524244,1466524244,''),(9,'SXG2016062117524833477','1',0,0,'222','222','0001,0002,00004','',NULL,0,1,0,1,NULL,0,3,'0.00',1466524368,1466524368,''),(10,'SXG2016062117535277359','1',0,0,'222','222','0001,0002,00004','',NULL,0,1,0,1,NULL,0,1,'0.00',1466524432,1466524432,''),(11,'SXG2016062117555823724','1',0,0,'惠普','2003','0001,0002,00004','',NULL,0,1,0,1,NULL,0,6,'0.00',1466524558,1466524558,''),(12,'SXG2016062613271180221','1',0,0,'联想','联想2016','0001,0002,0003,0','','static/upload/20160626/20160626132641_185.jpg;static/upload/20160626/20160626132645_567.jpg',7,1,0,1,0,0,7,'0.00',1466918831,1466924487,'希望快点来'),(13,'','',0,0,'','','','',NULL,0,1,0,1,NULL,0,1,'0.00',0,0,'');
 
 /*Table structure for table `sxg_repair_user` */
 
