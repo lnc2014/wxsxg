@@ -30,7 +30,6 @@ class Sxg extends BaseController{
             echo $this->apiReturn('0003', new stdClass(), '请求参数不能为空');
             return;
         }
-        session_start();
         if(!$this->check_user($phone)){
             echo $this->apiReturn('0002', new stdClass(), '用户不存在');
             return;
@@ -53,6 +52,7 @@ class Sxg extends BaseController{
      */
     public function check_user($phone = ''){
         $_SESSION['user_id'] = 1;//测试
+        $_SESSION['phone'] = '15899872592';//测试
         if(!empty($_SESSION['user_id'])){
             return true;
         }
@@ -63,6 +63,7 @@ class Sxg extends BaseController{
             $user_id = $this->sxg_user->get_user_by_phone($phone);
             if($user_id > 0 ) {
                 $_SESSION['user_id'] = $user_id;
+                $_SESSION['phone'] = '15899872592';
                 return true;
             }
             return false;
@@ -346,7 +347,26 @@ class Sxg extends BaseController{
             echo $this->apiReturn('0003', new stdClass(), '请求参数不能为空');
             return;
         }
-        //TODO 意见反馈
+        if(!$this->check_user()){
+            echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
+            exit();
+        };
+
+        $this->load->model("sxg_user_feedback");
+        $data = array(
+            'user_id' => $_SESSION['user_id'],
+            'mobile' => $_SESSION['phone'],
+            'content' => trim($feedback),
+            'feedback_time' => time(),
+        );
+        $feedback_id = $this->sxg_user_feedback->insert_data($data);
+        if($feedback_id > 0){
+            echo $this->apiReturn('0000', '', 'success');
+            return;
+        }else{
+            echo $this->apiReturn('0002', '', '内部错误');
+            return;
+        }
     }
     /**
      * 上传

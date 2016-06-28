@@ -92,7 +92,7 @@ $base_js_url = $this->config->item('js_url');
 
     function countdown(sender){
         $(".btn_verify").attr("disabled","").text("验证码(60s)");
-        var time = 10, cd = function(){
+        var time = 60, cd = function(){
             time--;
             if(time == 0) {
                 sender.innerHTML = "重新获取";

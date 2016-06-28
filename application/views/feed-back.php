@@ -23,25 +23,28 @@ $base_img_url = $this->config->item('img_url');
 <script type="text/javascript">
      $(".btn").click(function(){
          var feedback = $("#feedback").val();
-         console.log(feedback);
          if(!feedback){
              alert('投诉与建议不能为空！');
          }
          $.ajax({
-             url: "<?php echo site_url('sxg/add_feedback') ?>",
+             url: "/index.php/sxg/add_feedback",
              type: "POST",
              data: {
                  feedback:feedback
              },
              success: function(json){
-                 var json = eval('(' + json + ')');
-                 if (json.result != '0000') {
-                     alert(json.info);
-                 } else {
-                     location.href = '<?php echo site_url('sxg/my_account')?>';
+                 json = $.parseJSON(json);
+                 if(json.result == '0000') {
+                     alert('反馈成功！');
+                     window.location = '/index.php/sxg/my_account';
+                 }else {
+                     alert('反馈失败');
+                     window.location = '/index.php/sxg/my_account';
                  }
              },
-             error: function(){}
+             error: function(){
+                 alert('加载失败');
+             }
          });
 
      });
