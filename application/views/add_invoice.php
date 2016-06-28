@@ -8,10 +8,10 @@
 $this->load->view('common/header',array('title'=>$title));
 ?>
 <style>
-#checked{
-    background: url(/static/images/checked.png) no-repeat;
-    background-size: 100% 100%;
-}
+    #checked{
+        background: url(/static/images/checked.png) no-repeat;
+        background-size: 100% 100%;
+    }
     .unchecked{
         margin-right: -0.3em;
         margin-top: -0.1em;
@@ -22,7 +22,7 @@ $this->load->view('common/header',array('title'=>$title));
 <div class="container">
     <div class="inv_header">
         <div class="h_l color_a8">可开票订单列表</div>
-        <a href="invoice_history.html"><div class="h_r color_orange">开票历史</div></a>
+        <a href="/index.php/sxg/invoice"><div class="h_r color_orange">开票历史</div></a>
     </div>
     <div class="invoice_list">
         <div class="inv_row">
