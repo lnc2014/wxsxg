@@ -70,8 +70,8 @@ img, input, button, textarea, select { vertical-align: top; overflow: hidden; bo
 img, input, button, textarea { -webkit-appearance: none;  }
 input[type='checkbox'],
 input[type='radio'] { width: 1.1325em; height: 1.1325em; }
-input[type='checkbox'] { margin-right: -0.3em; margin-top: -0.1em; background: url(/static/images/unchecked.png) no-repeat; background-size: 100% 100%; }
-input[type='checkbox']:checked { background: url(/static/images/checked.png) no-repeat; background-size: 100% 100%; }
+/*input[type='checkbox'] { margin-right: -0.3em; margin-top: -0.1em; background: url(/static/images/unchecked.png) no-repeat; background-size: 100% 100%; }*/
+/*input[type='checkbox']:checked { background: url(/static/images/checked.png) no-repeat; background-size: 100% 100%; }*/
 /*input[type='radio'] { margin-right: 0.3em; margin-top: -0.1em; background: url(../images/radio.png) no-repeat; background-size: 100% 100%; }*/
 /*input[type='radio']:checked { background: url(../images/radio_checked.png) no-repeat; background-size: 100% 100%; }*/
 

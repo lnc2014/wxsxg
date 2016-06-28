@@ -12,6 +12,11 @@ $base_img_url = $this->config->item('img_url');
 <style>
     input[type='checkbox'] { margin-right: -0.3em; margin-top: -0.1em; background: url(<?php echo $base_img_url?>unchecked.png) no-repeat; background-size: 100% 100%; }
     input[type='checkbox']:checked { background: url(<?php echo $base_img_url?>checked.png) no-repeat; background-size: 100% 100%; }
+
+    .div_images .img_li.add_li {
+        background: url(/static/images/add.png) no-repeat;
+        background-size: 100% 100%;
+    }
 </style>
 <!--引入wenupload CSS-->
 <link rel="stylesheet" type="text/css" href="/static/webupload/webuploader.css">

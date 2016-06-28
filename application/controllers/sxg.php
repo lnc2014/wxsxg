@@ -321,7 +321,7 @@ class Sxg extends BaseController{
     /**
      * 发票管理
      */
-    public function invoice(){
+        public function invoice(){
         $title = "发票管理";
         if(!$this->check_user()){
             echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
@@ -345,10 +345,106 @@ class Sxg extends BaseController{
             echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
             exit();
         };
+        $this->load->model("sxg_order");
+        $order_list = $this->sxg_order->find_all_order_by_user_id($_SESSION['user_id'], 7);
 
         $this->load->view('add_invoice',array(
+            'title' => $title,
+            'order_list' => $order_list,
+        ));
+    }
+
+    /**
+     * 开票第二步骤
+     */
+    public function add_invoice_next($money){
+        if(empty($money)){
+            exit("<script>alert('非法请求!');location.href='/index.php/sxg/my_account';</script>");
+        }
+        $title = "发票申请";
+        if(!$this->check_user()){
+            echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
+            exit();
+        };
+        $user_id = $_SESSION['user_id'];
+        $this->load->model("sxg_address");
+        if(empty($address_id)){
+            //地址信息
+            $address = $this->sxg_address->find_address_by_condition(array(
+                'user_id' => $user_id,
+                'is_default' => 1
+            ));
+        }else{
+            $address = $this->sxg_address->find_address_by_condition(array(
+                'address_id' => $address_id
+            ));
+        }
+        $this->load->view('add_invoice_next',array(
+            'title' => $title,
+            'address' => $address,
+            'money' => $money,
+        ));
+    }
+
+    /**
+     * 获取发票详情
+     * @param $invoice_id
+     */
+    public function invoice_detail($invoice_id){
+        if(empty($invoice_id)){
+            exit("<script>alert('非法请求!');location.href='/index.php/sxg/my_account';</script>");
+        }
+        $this->load->model("sxg_invoice");
+        $this->load->model("sxg_address");
+        $this->load->model("sxg_delivery");
+        $invoice = $this->sxg_invoice->get_invoice_detail($invoice_id);
+        $delivery = $this->sxg_delivery->get_delivery_id_detail($invoice['delivery_id']);
+        $address = $this->sxg_address->find_address_by_condition(array(
+            'address_id' => $invoice['address_id']
+        ));
+        $title = "发票详情";
+        $this->load->view('invoice_detail',array(
+            'title' => $title,
+            'invoice' => $invoice,
+            'address' => $address,
+            'delivery' => $delivery
+        ));
+    }
+    /**
+     * 发票添加成功
+     */
+    public function invoice_success(){
+        $title = "发票成功提交";
+        $this->load->view('invoice_success',array(
             'title' => $title
         ));
+    }
+    /**
+     * 添加数据
+     */
+    public function add_invoice_data(){
+        if(!$this->check_user()){
+            echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
+            exit();
+        };
+        $post = $this->input->post(NULL, TRUE);
+        if(empty($post)){
+            echo $this->apiReturn('0003', new stdClass(), '参数不正确');
+            exit();
+        }
+        $post['user_id'] = $_SESSION['user_id'];
+        $post['createtime'] = time();
+        $post['updatetime'] = time();
+        $this->load->model("sxg_invoice");
+        $order_id = $this->sxg_invoice->insert_data($post);
+        if($order_id > 0){
+            echo $this->apiReturn('0000', new stdClass(), 'success');
+            exit();
+        }else{
+            echo $this->apiReturn('0002', new stdClass(), '内部错误');
+            exit();
+
+        }
     }
     /**
      * 我的账户

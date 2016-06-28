@@ -21,5 +21,5 @@ $base_css_url = $this->config->item('css_url');
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi">
     <title><?php echo $title ?></title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $base_css_url?>/main.css?v=1.0" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $base_css_url?>main.css?v=1.0" />
 </head>
