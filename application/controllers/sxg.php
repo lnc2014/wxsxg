@@ -319,6 +319,38 @@ class Sxg extends BaseController{
     }
 
     /**
+     * 发票管理
+     */
+    public function invoice(){
+        $title = "发票管理";
+        if(!$this->check_user()){
+            echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
+            exit();
+        };
+        $this->load->model("sxg_invoice");
+        $invoice_list = $this->sxg_invoice->get_invoice_list($_SESSION['user_id']);
+//        1、受理中2、已开票（配送中）3、已完成 发票的状态
+        $this->load->view('invoice_list',array(
+            'title' => $title,
+            'invoice_list' => $invoice_list,
+        ));
+    }
+
+    /**
+     * 开票
+     */
+    public function add_invoice(){
+        $title = "发票申请";
+        if(!$this->check_user()){
+            echo $this->apiReturn('0004', new stdClass(), '用户尚未登录');
+            exit();
+        };
+
+        $this->load->view('add_invoice',array(
+            'title' => $title
+        ));
+    }
+    /**
      * 我的账户
      */
     public function my_account(){
