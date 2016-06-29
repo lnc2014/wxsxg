@@ -98,21 +98,22 @@ DROP TABLE IF EXISTS `sxg_invoice`;
 
 CREATE TABLE `sxg_invoice` (
   `invoice_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '发票Id',
-  `address_id` int(11) DEFAULT NULL COMMENT '地址ID',
-  `user_id` int(11) DEFAULT NULL COMMENT '发票申请人',
-  `invoice_header` varchar(50) DEFAULT NULL COMMENT '发票抬头',
-  `invoice_content` varchar(100) DEFAULT NULL COMMENT '发票内容',
-  `invoice_money` decimal(10,2) DEFAULT NULL COMMENT '发票金额',
+  `address_id` int(11) DEFAULT '0' COMMENT '地址ID',
+  `user_id` int(11) DEFAULT '0' COMMENT '发票申请人',
+  `invoice_header` varchar(50) DEFAULT '' COMMENT '发票抬头',
+  `invoice_content` varchar(100) DEFAULT '' COMMENT '发票内容',
+  `invoice_money` decimal(10,2) DEFAULT '0.00' COMMENT '发票金额',
   `delivery_way` tinyint(4) DEFAULT '1' COMMENT '配送方式，1为人工送达，2为物流，默认为人工',
-  `delivery_id` int(11) DEFAULT NULL COMMENT '物流信息ID',
+  `delivery_id` int(11) DEFAULT '0' COMMENT '物流信息ID',
   `createtime` int(11) DEFAULT NULL COMMENT '发票申请时间',
   `updatetime` int(11) DEFAULT NULL COMMENT '发票审核更新时间',
+  `status` tinyint(4) DEFAULT '1' COMMENT '1、受理中2、已开票（配送中）3、已完成',
   PRIMARY KEY (`invoice_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sxg_invoice` */
 
-insert  into `sxg_invoice`(`invoice_id`,`address_id`,`user_id`,`invoice_header`,`invoice_content`,`invoice_money`,`delivery_way`,`delivery_id`,`createtime`,`updatetime`) values (1,1,1,'我是来测试的','我是来测试的',NULL,1,1,1,1),(2,2,1,'1','1',NULL,1,1,1,1),(3,2,1,'1','1',NULL,1,1,1,1),(4,2,1,'1','1',NULL,1,1,1,1);
+insert  into `sxg_invoice`(`invoice_id`,`address_id`,`user_id`,`invoice_header`,`invoice_content`,`invoice_money`,`delivery_way`,`delivery_id`,`createtime`,`updatetime`,`status`) values (1,1,1,'我是来测试的','我是来测试的','12.00',1,1,1467117059,1467117059,2),(2,2,1,'1','1','12.00',1,1,1467117059,1467117059,1),(3,2,1,'1','1','12.00',1,1,1467117059,1467117059,2),(4,2,1,'1','1','425.00',1,1,1467117059,1467117059,3);
 
 /*Table structure for table `sxg_order` */
 
@@ -212,11 +213,11 @@ CREATE TABLE `sxg_user_feedback` (
   `content` longtext COMMENT '反馈内容',
   `feedback_time` int(11) DEFAULT NULL COMMENT '反馈时间,时间戳',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sxg_user_feedback` */
 
-insert  into `sxg_user_feedback`(`id`,`user_id`,`mobile`,`content`,`feedback_time`) values (1,1,'15899872592',NULL,NULL);
+insert  into `sxg_user_feedback`(`id`,`user_id`,`mobile`,`content`,`feedback_time`) values (1,1,'15899872592',NULL,NULL),(2,1,NULL,'wedwewe',1467114522),(3,1,'15899872592','ssdsd',1467114612),(4,1,'15899872592','sdsd',1467114643),(5,1,'15899872592','我是来提建议的',1467114724),(6,1,'15899872592','是是是',1467114793),(7,1,'15899872592','s是是是',1467114836),(8,1,'15899872592','w问问',1467114948),(9,1,'15899872592','s试试',1467114956),(10,1,'15899872592','s是',1467114998),(11,1,'15899872592','s是',1467115012),(12,1,'15899872592','s试试',1467115042),(13,1,'15899872592','是',1467115080),(14,1,'15899872592','s是是是',1467115197),(15,1,'15899872592','w  二',1467115249),(16,1,'15899872592','死死死死死死',1467115342),(17,1,'15899872592','飒飒飒飒',1467115356);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

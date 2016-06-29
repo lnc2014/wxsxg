@@ -23,11 +23,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://127.0.0.1/wxsxg/';
-$config['css_url'] = 'http://127.0.0.1/wxsxg/static/css/';
-$config['js_url'] = 'http://127.0.0.1/wxsxg/static/js/';
-$config['img_url'] = 'http://127.0.0.1/wxsxg/static/images/';
-$config['static_url'] = 'http://127.0.0.1/wxsxg/static/';
+$config['base_url'] = 'http://sxg.lnctime.com/';
+$config['css_url'] = 'http://sxg.lnctime.com/static/css/';
+$config['js_url'] = 'http://sxg.lnctime.com/static/js/';
+$config['img_url'] = 'http://sxg.lnctime.com/static/images/';
+$config['static_url'] = 'http://sxg.lnctime.com/static/';
 
 /*
 |--------------------------------------------------------------------------

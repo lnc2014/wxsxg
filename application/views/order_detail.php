@@ -156,7 +156,7 @@ $base_img_url = $this->config->item('img_url');
                 dataType: "json",
                 success: function(json){
                     if(json.result == '0000'){
-                        window.location = '/index.php/sxg/my_order';
+                        window.location = '/index.php/sxg/my_order_list';
                     }else {
                         alert(json.info);
                     }
