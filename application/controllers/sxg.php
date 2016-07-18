@@ -73,8 +73,10 @@ class Sxg extends BaseController{
     /**
      * 发送验证码
      */
-    public function get_code(){
-
+    public function get_code($mobile, $code){
+        //发送短信
+        $this->load->library('sms');
+        return $this->sms->send_register($mobile, $code);
     }
 
     /**
