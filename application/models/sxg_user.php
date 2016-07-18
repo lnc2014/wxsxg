@@ -35,7 +35,6 @@ class sxg_user extends CI_Model{
             $this->db->insert($this->table_name, $array);
             return $this->db->insert_id();
         }
-
         return $result['user_id'];
     }
 }

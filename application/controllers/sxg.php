@@ -14,6 +14,7 @@ class Sxg extends BaseController{
      */
     public function index(){
         $title = '快速登录';
+        $open_id = $this->get_user_openid();
         $this->load->view('login',array(
             'title' => $title
         ));
@@ -50,9 +51,9 @@ class Sxg extends BaseController{
      * @param $phone
      * @return bool
      */
-    public function check_user($phone = ''){
-        $_SESSION['user_id'] = 1;//测试
-        $_SESSION['phone'] = '15899872592';//测试
+    public function check_user_(){
+//        $_SESSION['user_id'] = 1;//测试
+//        $_SESSION['phone'] = '15899872592';//测试
         if(!empty($_SESSION['user_id'])){
             return true;
         }
@@ -68,7 +69,38 @@ class Sxg extends BaseController{
             }
             return false;
         }
-
+    }
+    /**
+     * 检测用户是否有已授权
+     */
+    private function check_user()
+    {
+        // $_SESSION['user_id'] = 21;//本地调试
+        if ($_SESSION['user_id']) {
+            return true;
+        }
+        //用户无登录入口，必须微信自动登录
+        $this->load->model('sxg_user');
+        $openid = $this->get_user_openid();
+        $user_info = $this->sxg_user->get_one(array('wx_openid' => $openid), 'user_id');
+        if (!empty($user_info)) {
+            $_SESSION['user_id'] = $user_info['user_id'];
+            $_SESSION['jspayOpenId'] = $openid;
+            return true;
+        } else {//用户不存在就添加一条记录
+            $data = array(
+                'wx_openid' => $openid
+            );
+            $user_id = $this->M_cw_user->add($data);
+            if($user_id > 0 ){
+                $_SESSION['user_id'] = $user_id;
+//                $_SESSION['last_motorcade'] = 0;
+                $_SESSION['jspayOpenId'] = $openid;
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
     /**
      * 发送验证码
